@@ -18,46 +18,45 @@ package frc.robot;
 public final class Constants {
   
     /* Left Motor */
-  public static final int MOTOR_LEFTFRONT = 3;
-  public static final int MOTOR_LEFTREAR = 1;
+    public static final int MOTOR_LEFTFRONT = 3;
+    public static final int MOTOR_LEFTREAR = 1;
 
-  /* Right Motor */
-  public static final int MOTOR_RIGHTFRONT = 2;
-  public static final int MOTOR_RIGHTREAR = 0;
+    /* Right Motor */
+    public static final int MOTOR_RIGHTFRONT = 2;
+    public static final int MOTOR_RIGHTREAR = 0;
 
-  /* TalonSRX */
-  public static final int TALONSRX_CARGO = 1;
-  public static final int TALONSRX_ELEVATOR = 3;
-  public static final int TALONSRX_HATCH = 2;
+    /* TalonSRX */
+    public static final int TALONSRX_WINCH1 = 1;
+    public static final int TALONSRX_WINCH2 = 2;
 
-  /* Joystick port */
-  public static final int  J_STICK_DRIVER = 0;
-  public static final int  J_STICK_CONTROL = 1;
+    /* Joystick port */
+    public static final int  J_STICK_DRIVER = 0;
+    public static final int  J_STICK_CONTROL = 1;
 
-  /* Joystick */
-  public static final int BUTTON_RIGHT = 5; 
-  public static final int BUTTON_LEFT = 6;
-  public static final int BUTTON_X = 3; 
-  public static final int BUTTON_Y = 4;
-  public static final int BUTTON_A = 1; 
-  public static final int BUTTON_B = 2;
-  public static final int BUTTON_BACK = 7;
-  public static final int BUTTON_START = 8;
-  public static final int BUTTON_LEFTSTICK = 9;
-  public static final int BUTTON_RIGHTSTICK = 10;
+    /* Joystick */
+    public static final int BUTTON_RIGHT = 5; 
+    public static final int BUTTON_LEFT = 6;
+    public static final int BUTTON_X = 3; 
+    public static final int BUTTON_Y = 4;
+    public static final int BUTTON_A = 1; 
+    public static final int BUTTON_B = 2;
+    public static final int BUTTON_BACK = 7;
+    public static final int BUTTON_START = 8;
+    public static final int BUTTON_LEFTSTICK = 9;
+    public static final int BUTTON_RIGHTSTICK = 10;
 
-  public static final int AXIS_LEFT_X = 0;
-  public static final int AXIS_LEFT_Y = 1;
-  public static final int AXIS_LEFT_TRIGGER = 2;
-  public static final int AXIS_RIGHT_TRIGGER = 3;
-  public static final int AXIS_RIGHT_X = 4;
-  public static final int AXIS_RIGHT_Y = 5;
+    public static final int AXIS_LEFT_X = 0;
+    public static final int AXIS_LEFT_Y = 1;
+    public static final int AXIS_LEFT_TRIGGER = 2;
+    public static final int AXIS_RIGHT_TRIGGER = 3;
+    public static final int AXIS_RIGHT_X = 4;
+    public static final int AXIS_RIGHT_Y = 5;
 
-  /* Pneumatics */
-  public static final int CAN_COMPRESSOR = 0;
-  public static final int CAN_DOUBLESOLENOID_1_LEFT = 0;
-  public static final int CAN_DOUBLESOLENOID_1_RIGHT = 1;
-  public static final int CAN_DOUBLESOLENOID_2_LEFT = 2;
-  public static final int CAN_DOUBLESOLENOID_2_RIGHT = 3;
+    /* Pneumatics */
+    public static final int CAN_COMPRESSOR = 0;
+    public static final int CAN_DOUBLESOLENOID_1_LEFT = 0;
+    public static final int CAN_DOUBLESOLENOID_1_RIGHT = 1;
+    public static final int CAN_DOUBLESOLENOID_2_LEFT = 2;
+    public static final int CAN_DOUBLESOLENOID_2_RIGHT = 3;
   
 }
