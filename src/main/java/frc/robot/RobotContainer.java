@@ -11,6 +11,10 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.Arcade_Drive;
+import frc.robot.commands.Climb_Down;
+import frc.robot.commands.Climb_Up;
+import frc.robot.commands.Stop_Climb;
+import frc.robot.subsystems.Climber_Subsystem;
 import frc.robot.subsystems.DriveTrain_Subsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -26,9 +30,13 @@ public class RobotContainer {
 
     // Subsystems //
     private final DriveTrain_Subsystem m_driveTrainSubsystem = new DriveTrain_Subsystem();
+    private final Climber_Subsystem m_climberSubsystem = new Climber_Subsystem();
 
     // Commands //
     private final Arcade_Drive m_arcadeDriveCommand = new Arcade_Drive(m_driveTrainSubsystem);
+    private final Climb_Up m_climbUpCommand = new Climb_Up(m_climberSubsystem);
+    private final Climb_Down m_climbDownCommand = new Climb_Down(m_climberSubsystem);
+    private final Stop_Climb m_stopClimbCommand = new Stop_Climb(m_climberSubsystem);
 
     // Commands for Autonomous Period //
     private final Arcade_Drive m_autoCommand = new Arcade_Drive(m_driveTrainSubsystem);
@@ -69,7 +77,8 @@ public class RobotContainer {
         configureButtonBindings();
         
         // Default Command(s) //
-        m_driveTrainSubsystem.setDefaultCommand(m_arcadeDriveCommand);
+        m_driveTrainSubsystem.setDefaultCommand(m_arcadeDriveCommand);  // Defaults to Arcade Drive
+        m_climberSubsystem.setDefaultCommand(m_stopClimbCommand);       // Defaults to climber not running
     }
 
     /**
@@ -79,6 +88,8 @@ public class RobotContainer {
      * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
      */
     private void configureButtonBindings() {
+        j_stick_control_A.whenHeld(m_climbUpCommand);
+        j_stick_control_B.whenHeld(m_climbDownCommand);
     }
 
     /**
