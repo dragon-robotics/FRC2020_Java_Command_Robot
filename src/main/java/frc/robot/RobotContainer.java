@@ -11,6 +11,9 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.Arcade_Drive;
+import frc.robot.commands.Climb_Down;
+import frc.robot.commands.Climb_Up;
+import frc.robot.subsystems.Climber_Subsystem;
 import frc.robot.subsystems.DriveTrain_Subsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -26,9 +29,12 @@ public class RobotContainer {
 
   // Subsystems //
   private final DriveTrain_Subsystem m_driveTrainSubsystem = new DriveTrain_Subsystem();
+  private final Climber_Subsystem m_climberSubsystem = new Climber_Subsystem();
 
   // Commands //
   private final Arcade_Drive m_arcadeDriveCommand = new Arcade_Drive(m_driveTrainSubsystem);
+  public final Climb_Up m_climberUpCommand = new Climb_Up(m_climberSubsystem);
+  public final Climb_Down m_climberDownCommand = new Climb_Down(m_climberSubsystem);
 
   // Commands for Autonomous Period //
   private final Arcade_Drive m_autoCommand = new Arcade_Drive(m_driveTrainSubsystem);
@@ -79,6 +85,8 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    j_stick_control_A.whenHeld(m_climberUpCommand);
+    j_stick_control_B.whenHeld(m_climberDownCommand);
   }
 
 
