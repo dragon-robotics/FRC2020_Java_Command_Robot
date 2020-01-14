@@ -14,38 +14,38 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class DriveTrain_Subsystem extends SubsystemBase {
-  /**
-   * Creates a new DriveTrain_Subsystem.
-   */
+    /**
+     * Creates a new DriveTrain_Subsystem.
+     */
 
-  /* Left Motors */
-  private final PWMVictorSPX m_leftFront = new PWMVictorSPX(Constants.MOTOR_LEFTFRONT);                         // Left Front Motor using PWM Victor
-  private final PWMVictorSPX m_leftRear = new PWMVictorSPX(Constants.MOTOR_LEFTREAR);                          // Left Rear Motor using PWM Victor
-  SpeedControllerGroup m_left = new SpeedControllerGroup(m_leftFront, m_leftRear);      // Left Front + Left Rear synchronized control
-  
-  /* Right Motors */
-  private final PWMVictorSPX m_rightFront = new PWMVictorSPX(Constants.MOTOR_RIGHTFRONT);                        // Right Front Motor using PWM Victor
-  private final PWMVictorSPX m_rightRear = new PWMVictorSPX(Constants.MOTOR_RIGHTREAR);                         // Right Rear Motor using PWM Victor
-  SpeedControllerGroup m_right = new SpeedControllerGroup(m_rightFront, m_rightRear);   // Right Front + Right Rear synchronized control
-  
-  private DifferentialDrive m_robotDrive = new DifferentialDrive(m_left,m_right);
+    /* Left Motors */
+    private final PWMVictorSPX m_leftFront = new PWMVictorSPX(Constants.MOTOR_LEFTFRONT);                         // Left Front Motor using PWM Victor
+    private final PWMVictorSPX m_leftRear = new PWMVictorSPX(Constants.MOTOR_LEFTREAR);                          // Left Rear Motor using PWM Victor
+    SpeedControllerGroup m_left = new SpeedControllerGroup(m_leftFront, m_leftRear);      // Left Front + Left Rear synchronized control
 
-  public DriveTrain_Subsystem() {
-    // DriveTrain Subsystem Constructor //
-  }
+    /* Right Motors */
+    private final PWMVictorSPX m_rightFront = new PWMVictorSPX(Constants.MOTOR_RIGHTFRONT);                        // Right Front Motor using PWM Victor
+    private final PWMVictorSPX m_rightRear = new PWMVictorSPX(Constants.MOTOR_RIGHTREAR);                         // Right Rear Motor using PWM Victor
+    SpeedControllerGroup m_right = new SpeedControllerGroup(m_rightFront, m_rightRear);   // Right Front + Right Rear synchronized control
 
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-  }
+    private DifferentialDrive m_robotDrive = new DifferentialDrive(m_left,m_right);
 
-  public void arcadeDrive(double drive_speed, double steer_speed){
-    // Read joystick input and translate into arcade drive //
-    m_robotDrive.arcadeDrive(drive_speed, steer_speed);
-  }
+    public DriveTrain_Subsystem() {
+        // DriveTrain Subsystem Constructor //
+    }
 
-  public void tankDrive(double left_speed, double right_speed){
-    // Read joystick input and translate into tank drive //
-    m_robotDrive.tankDrive(left_speed, right_speed);
-  }
+    @Override
+    public void periodic() {
+        // This method will be called once per scheduler run
+    }
+
+    public void arcadeDrive(double drive_speed, double steer_speed){
+        // Read joystick input and translate into arcade drive //
+        m_robotDrive.arcadeDrive(drive_speed, steer_speed);
+    }
+
+    public void tankDrive(double left_speed, double right_speed){
+        // Read joystick input and translate into tank drive //
+        m_robotDrive.tankDrive(left_speed, right_speed);
+    }
 }
