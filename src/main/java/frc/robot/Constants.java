@@ -26,8 +26,9 @@ public final class Constants {
     public static final int MOTOR_RIGHTREAR = 0;
 
     /* TalonSRX */
-    public static final int TALONSRX_WINCH1 = 1;
-    public static final int TALONSRX_WINCH2 = 2;
+    public static final int TALONSRX_WINCH = 1;
+    public static final int TALONSRX_HOOK = 2;
+    public static final int TALONSRX_SHOOT = 3;
 
     /* Joystick port */
     public static final int  J_STICK_DRIVER = 0;

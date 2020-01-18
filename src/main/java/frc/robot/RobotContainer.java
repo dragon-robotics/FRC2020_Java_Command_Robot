@@ -13,9 +13,13 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.Arcade_Drive;
 import frc.robot.commands.Climb_Down;
 import frc.robot.commands.Climb_Up;
+import frc.robot.commands.Move_Hook;
+import frc.robot.commands.Shooter_Shoot_Button;
+import frc.robot.commands.Shooter_Shoot_Joy;
 import frc.robot.commands.Stop_Climb;
 import frc.robot.subsystems.Climber_Subsystem;
 import frc.robot.subsystems.DriveTrain_Subsystem;
+import frc.robot.subsystems.Shooter_Subsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -31,12 +35,15 @@ public class RobotContainer {
     // Subsystems //
     private final DriveTrain_Subsystem m_driveTrainSubsystem = new DriveTrain_Subsystem();
     private final Climber_Subsystem m_climberSubsystem = new Climber_Subsystem();
+    private final Shooter_Subsystem m_shooterSubsystem = new Shooter_Subsystem();
 
     // Commands //
     private final Arcade_Drive m_arcadeDriveCommand = new Arcade_Drive(m_driveTrainSubsystem);
+    private final Move_Hook m_Move_Hook = new Move_Hook(m_climberSubsystem);
     private final Climb_Up m_climbUpCommand = new Climb_Up(m_climberSubsystem);
-    private final Climb_Down m_climbDownCommand = new Climb_Down(m_climberSubsystem);
     private final Stop_Climb m_stopClimbCommand = new Stop_Climb(m_climberSubsystem);
+    private final Shooter_Shoot_Joy m_Shooter_Shoot_Joy = new Shooter_Shoot_Joy(m_shooterSubsystem);
+    private final Shooter_Shoot_Button m_Shooter_Shoot_Button = new Shooter_Shoot_Button(m_shooterSubsystem);
 
     // Commands for Autonomous Period //
     private final Arcade_Drive m_autoCommand = new Arcade_Drive(m_driveTrainSubsystem);
@@ -78,7 +85,9 @@ public class RobotContainer {
         
         // Default Command(s) //
         m_driveTrainSubsystem.setDefaultCommand(m_arcadeDriveCommand);  // Defaults to Arcade Drive
-        m_climberSubsystem.setDefaultCommand(m_stopClimbCommand);       // Defaults to climber not running
+        // m_climberSubsystem.setDefaultCommand(m_stopClimbCommand);       // Defaults to climber not running
+        m_climberSubsystem.setDefaultCommand(m_Move_Hook);       // Defaults to climber not running
+        m_shooterSubsystem.setDefaultCommand(m_Shooter_Shoot_Joy);
     }
 
     /**
@@ -89,7 +98,9 @@ public class RobotContainer {
      */
     private void configureButtonBindings() {
         j_stick_control_A.whenHeld(m_climbUpCommand);
-        j_stick_control_B.whenHeld(m_climbDownCommand);
+        j_stick_control_A.whenReleased(m_stopClimbCommand);
+
+        // j_stick_control_B.whenHeld(m_climbDownCommand);
     }
 
     /**
