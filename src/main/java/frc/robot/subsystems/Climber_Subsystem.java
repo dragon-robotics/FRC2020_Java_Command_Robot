@@ -31,7 +31,7 @@ public class Climber_Subsystem extends SubsystemBase {
 
     public void Climb_Up(){
         winch_1.set(ControlMode.PercentOutput, 1.0);
-        winch_1.set(ControlMode.PercentOutput, -1.0);
+        winch_2.set(ControlMode.PercentOutput, -1.0);
     }
 
     public void Climb_Down(){
