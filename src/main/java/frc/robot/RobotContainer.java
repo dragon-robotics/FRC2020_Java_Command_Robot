@@ -9,7 +9,6 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.Arcade_Drive;
 import frc.robot.commands.Climb_Down;
 import frc.robot.commands.Climb_Up;

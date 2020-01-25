@@ -21,4 +21,12 @@ public class Shooter_Subsystem extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
+
+  public void Intake(){
+
+  }
+
+  public void Shoot(double power){
+
+  }
 }
