@@ -11,25 +11,19 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Limelight_Subsystem extends SubsystemBase {
-  /**
-   * Creates a new Limelight_Subsystem.
-   */
+
   public Limelight_Subsystem() {
-
-  }
-
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
+    
   }
 
   /* To be completed */
 
   /* Contour Information - 1 if found, 0 is not */
   public boolean Find_Target(){
-    int tv = (int)NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(2375);
+    int tv = (int)NetworkTableInstance.getDefault().getTable("2375_Pipeline").getEntry("tv").getDouble(2375);
     if(tv > 0){
       return true;
     }
@@ -39,52 +33,52 @@ public class Limelight_Subsystem extends SubsystemBase {
   }
 
   public double Get_X(){
-    double tx = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(2375);
+    double tx = NetworkTableInstance.getDefault().getTable("2375_Pipeline").getEntry("tx").getDouble(2375);
     return tx;
   }
 
   public double Get_Y() {
-    double ty = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(2375);
+    double ty = NetworkTableInstance.getDefault().getTable("2375_Pipeline").getEntry("ty").getDouble(2375);
     return ty;
   }
 
   public double Get_Area() {
-    double ta = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(2375);
+    double ta = NetworkTableInstance.getDefault().getTable("2375_Pipeline").getEntry("ta").getDouble(2375);
     return ta;
   }
 
   public double Get_Skew(){
-    double ts = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ts").getDouble(2375);
+    double ts = NetworkTableInstance.getDefault().getTable("2375_Pipeline").getEntry("ts").getDouble(2375);
     return ts;
   }
 
   public double Get_Pipeline_Latency(){
-    double tl = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tl").getDouble(2375);
+    double tl = NetworkTableInstance.getDefault().getTable("2375_Pipeline").getEntry("tl").getDouble(2375);
     return tl;
   }
 
   public double Get_Sidelength_Of_Shortest_Side_Of_Fitted_Bounding_Box(){
-    double tshort = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tshort").getDouble(2375);
+    double tshort = NetworkTableInstance.getDefault().getTable("2375_Pipeline").getEntry("tshort").getDouble(2375);
     return tshort;
   }
 
   public double Get_Sidelength_Of_Longest_Side_Of_Fitted_Bounding_Box() {
-    double tlong = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tlong").getDouble(2375);
+    double tlong = NetworkTableInstance.getDefault().getTable("2375_Pipeline").getEntry("tlong").getDouble(2375);
     return tlong;
   }
 
   public double Get_Horizontal_Sidelength_Of_Rough_Bounding_Box() {
-    double thor = NetworkTableInstance.getDefault().getTable("limelight").getEntry("thor").getDouble(2375);
+    double thor = NetworkTableInstance.getDefault().getTable("2375_Pipeline").getEntry("thor").getDouble(2375);
     return thor;
   }
 
   public double Get_Vertical_Sidelength_Of_Rough_Bounding_Box() {
-    double tvert = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tvert").getDouble(2375);
+    double tvert = NetworkTableInstance.getDefault().getTable("2375_Pipeline").getEntry("tvert").getDouble(2375);
     return tvert;
   }
 
   public double Get_Pipeline(){
-    double getpipe = NetworkTableInstance.getDefault().getTable("limelight").getEntry("getpipe").getDouble(2375);
+    double getpipe = NetworkTableInstance.getDefault().getTable("2375_Pipeline").getEntry("getpipe").getDouble(2375);
     return getpipe;
   }
 
@@ -98,7 +92,7 @@ public class Limelight_Subsystem extends SubsystemBase {
    * 3 - force on
    */
   public void Set_LED(int led_value){
-    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(led_value);
+    NetworkTableInstance.getDefault().getTable("2375_Pipeline").getEntry("ledMode").setNumber(led_value);
   }
 
   /*
@@ -107,7 +101,7 @@ public class Limelight_Subsystem extends SubsystemBase {
    * 1 - Driver Camera (Increases Exposure, disables vision processing)
    */
   public void Set_Cam_Mode(int cam_mode) {
-    NetworkTableInstance.getDefault().getTable("limelight").getEntry("camMode").setNumber(cam_mode);
+    NetworkTableInstance.getDefault().getTable("2375_Pipeline").getEntry("camMode").setNumber(cam_mode);
   }
 
   /*
@@ -115,7 +109,7 @@ public class Limelight_Subsystem extends SubsystemBase {
    * 0..9 - Select pipeline 0..9
    */
   public void Set_Pipeline(int pipeline) {
-    NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(pipeline);
+    NetworkTableInstance.getDefault().getTable("2375_Pipeline").getEntry("pipeline").setNumber(pipeline);
   }
 
   /*
@@ -125,7 +119,7 @@ public class Limelight_Subsystem extends SubsystemBase {
    * 2 - PiP Secondary - The primary camera stream is placed in the lower-right corner of the secondary camera stream
    */
   public void Set_Stream(int stream){
-    NetworkTableInstance.getDefault().getTable("limelight").getEntry("stream").setNumber(stream);
+    NetworkTableInstance.getDefault().getTable("2375_Pipeline").getEntry("stream").setNumber(stream);
   }
 
   /*
@@ -134,7 +128,7 @@ public class Limelight_Subsystem extends SubsystemBase {
    * 1 - Take two snapshots per second
    */
   public void Set_Snapshot(int snapshot) {
-    NetworkTableInstance.getDefault().getTable("limelight").getEntry("snapshot").setNumber(snapshot);
+    NetworkTableInstance.getDefault().getTable("2375_Pipeline").getEntry("snapshot").setNumber(snapshot);
   }
 
   /* Corners */
@@ -142,4 +136,7 @@ public class Limelight_Subsystem extends SubsystemBase {
   /* Raw Targets */
 
   /* Raw CrossHair */
+  public void periodic(double tx, double ty) {
+
+  }
 }

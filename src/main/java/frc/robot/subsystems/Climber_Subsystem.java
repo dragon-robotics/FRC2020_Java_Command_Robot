@@ -14,8 +14,8 @@ import frc.robot.Constants;
 
 public class Climber_Subsystem extends SubsystemBase {
   
-    private final TalonSRX winch_1 = new TalonSRX(Constants.TALONSRX_WINCH1);
-    private final TalonSRX winch_2 = new TalonSRX(Constants.TALONSRX_WINCH2);
+    private final TalonSRX winch_1 = new TalonSRX(Constants.TALONSRX_WINCH);
+    private final TalonSRX winch_2 = new TalonSRX(Constants.TALONSRX_HOOK);
 
     /**
      * Creates a new Climber_Subsystem.
@@ -29,18 +29,21 @@ public class Climber_Subsystem extends SubsystemBase {
         // This method will be called once per scheduler run
     }
 
+    public void Move_Hook(double motor_speed) {
+        winch_2.set(ControlMode.PercentOutput, motor_speed);
+
+    }
     public void Climb_Up(){
         winch_1.set(ControlMode.PercentOutput, 1.0);
-        winch_2.set(ControlMode.PercentOutput, -1.0);
+
     }
 
     public void Climb_Down(){
         winch_1.set(ControlMode.PercentOutput, -1.0);
-        winch_2.set(ControlMode.PercentOutput, 1.0);
     }
 
     public void Stop_Climb(){
         winch_1.set(ControlMode.PercentOutput, 0.0);
-        winch_2.set(ControlMode.PercentOutput, 0.0);
+       // winch_2.set(ControlMode.PercentOutput, 0.0);
     }
 }
