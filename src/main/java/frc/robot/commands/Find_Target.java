@@ -8,19 +8,22 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Shooter_Subsystem;
+import frc.robot.subsystems.Limelight_Subsystem;
 
-public class Shooter_Shoot_Button extends CommandBase {
-  @SuppressWarnings ({ "PMD.UnusedPrivateField", "PMD.SingularField" })
+public class Find_Target extends CommandBase {
+  @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
+  private final Limelight_Subsystem n_subsystem;
   /**
-   * Creates a new Shooter_Shoot_Joy.
+   * Creates a new Find_Target.
    */
-  private final Shooter_Subsystem m_subsystem;
-  public Shooter_Shoot_Button(Shooter_Subsystem subsystem) {
-    m_subsystem = subsystem;
+
+
+  public Find_Target(Limelight_Subsystem subsystem) {
+    n_subsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
+
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
@@ -29,7 +32,7 @@ public class Shooter_Shoot_Button extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_subsystem.Shooter_Shoot_Button();
+    n_subsystem.Find_Target();
   }
 
   // Called once the command ends or is interrupted.

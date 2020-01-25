@@ -8,19 +8,21 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Shooter_Subsystem;
+import frc.robot.subsystems.Intake_Subsystem;
 
-public class Shooter_Shoot_Button extends CommandBase {
-  @SuppressWarnings ({ "PMD.UnusedPrivateField", "PMD.SingularField" })
+public class Intake_Stop extends CommandBase {
+  @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
+  private final Intake_Subsystem m_subsystem;
   /**
-   * Creates a new Shooter_Shoot_Joy.
+   * Creates a new Intake_Stop.
    */
-  private final Shooter_Subsystem m_subsystem;
-  public Shooter_Shoot_Button(Shooter_Subsystem subsystem) {
-    m_subsystem = subsystem;
+  public Intake_Stop(Intake_Subsystem subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
+    m_subsystem = subsystem;
+
     addRequirements(subsystem);
   }
+
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
@@ -29,7 +31,7 @@ public class Shooter_Shoot_Button extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_subsystem.Shooter_Shoot_Button();
+    m_subsystem.Intake_Stop();
   }
 
   // Called once the command ends or is interrupted.

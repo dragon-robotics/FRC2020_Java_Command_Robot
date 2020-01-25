@@ -19,6 +19,7 @@ public class Shooter_Subsystem extends SubsystemBase {
    * Creates a new Shooter_Subsystem.
    */
   private final TalonSRX shooter = new TalonSRX(Constants.TALONSRX_SHOOT);
+  private final TalonSRX shooter_1 = new TalonSRX(Constants.TALONSRX_SHOOT_2);
   public Shooter_Subsystem() {
 
   }
@@ -28,14 +29,17 @@ public class Shooter_Subsystem extends SubsystemBase {
     // This method will be called once per scheduler run
   }
   public void Shooter_Shoot_Joy(double shoot_speed) {
+    shooter.set(ControlMode.PercentOutput, shoot_speed); 
     shooter.set(ControlMode.PercentOutput, shoot_speed);
 
   }
   public void Shooter_Shoot_Button() {
     shooter.set(ControlMode.PercentOutput, 1);
+    shooter_1.set(ControlMode.PercentOutput, 1); 
   }
 
   public void Stop_Shoot() {
     shooter.set(ControlMode.PercentOutput, 0);
+    shooter_1.set(ControlMode.PercentOutput, 0);
   }
 }
