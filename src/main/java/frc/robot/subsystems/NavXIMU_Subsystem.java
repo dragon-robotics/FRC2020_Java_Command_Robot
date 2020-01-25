@@ -47,31 +47,31 @@ public class NavXIMU_Subsystem extends SubsystemBase {
   private void UpdateNavXData(){
     /* Display 6-axis Processed Angle Data                                      */
     Shuffleboard.getTab(tabTitle).add("IMU_Connected", ahrs.isConnected());
-    Shuffleboard.getTab(tabTitle).add(  "IMU_IsCalibrating",    ahrs.isCalibrating());
-    Shuffleboard.getTab(tabTitle).add(   "IMU_Yaw",              ahrs.getYaw());
-    Shuffleboard.getTab(tabTitle).add(   "IMU_Pitch",            ahrs.getPitch());
-    Shuffleboard.getTab(tabTitle).add(   "IMU_Roll",             ahrs.getRoll());
+    Shuffleboard.getTab(tabTitle).add("IMU_IsCalibrating",    ahrs.isCalibrating());
+    Shuffleboard.getTab(tabTitle).add("IMU_Yaw",              ahrs.getYaw());
+    Shuffleboard.getTab(tabTitle).add("IMU_Pitch",            ahrs.getPitch());
+    Shuffleboard.getTab(tabTitle).add("IMU_Roll",             ahrs.getRoll());
     
     /* Display tilt-corrected, Magnetometer-based heading (requires             */
     /* magnetometer calibration to be useful)                                   */
     
-    Shuffleboard.getTab(tabTitle).add(   "IMU_CompassHeading",   ahrs.getCompassHeading());
+    Shuffleboard.getTab(tabTitle).add("IMU_CompassHeading",   ahrs.getCompassHeading());
     
     /* Display 9-axis Heading (requires magnetometer calibration to be useful)  */
-    Shuffleboard.getTab(tabTitle).add(   "IMU_FusedHeading",     ahrs.getFusedHeading());
+    Shuffleboard.getTab(tabTitle).add("IMU_FusedHeading",     ahrs.getFusedHeading());
 
     /* These functions are compatible w/the WPI Gyro Class, providing a simple  */
     /* path for upgrading from the Kit-of-Parts gyro to the navx MXP            */
     
-    Shuffleboard.getTab(tabTitle).add(   "IMU_TotalYaw",         ahrs.getAngle());
-    Shuffleboard.getTab(tabTitle).add(   "IMU_YawRateDPS",       ahrs.getRate());
+    Shuffleboard.getTab(tabTitle).add("IMU_TotalYaw",         ahrs.getAngle());
+    Shuffleboard.getTab(tabTitle).add("IMU_YawRateDPS",       ahrs.getRate());
 
     /* Display Processed Acceleration Data (Linear Acceleration, Motion Detect) */
     
-    Shuffleboard.getTab(tabTitle).add(   "IMU_Accel_X",          ahrs.getWorldLinearAccelX());
-    Shuffleboard.getTab(tabTitle).add(   "IMU_Accel_Y",          ahrs.getWorldLinearAccelY());
-    Shuffleboard.getTab(tabTitle).add(  "IMU_IsMoving",         ahrs.isMoving());
-    Shuffleboard.getTab(tabTitle).add(  "IMU_IsRotating",       ahrs.isRotating());
+    Shuffleboard.getTab(tabTitle).add("IMU_Accel_X",          ahrs.getWorldLinearAccelX());
+    Shuffleboard.getTab(tabTitle).add("IMU_Accel_Y",          ahrs.getWorldLinearAccelY());
+    Shuffleboard.getTab(tabTitle).add("IMU_IsMoving",         ahrs.isMoving());
+    Shuffleboard.getTab(tabTitle).add("IMU_IsRotating",       ahrs.isRotating());
 
     /* Display estimates of velocity/displacement.  Note that these values are  */
     /* not expected to be accurate enough for estimating robot position on a    */
