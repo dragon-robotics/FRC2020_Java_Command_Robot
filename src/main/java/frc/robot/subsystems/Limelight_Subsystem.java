@@ -11,12 +11,19 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 
 public class Limelight_Subsystem extends SubsystemBase {
 
+  private String tabTitle;
+  private ShuffleboardTab limelightTab;
+
   public Limelight_Subsystem() {
-    
+    tabTitle = "LimelightTab";
+    limelightTab = Shuffleboard.getTab(tabTitle);
+
+    DisplayLimelightData();
   }
 
   /* To be completed */
@@ -138,5 +145,42 @@ public class Limelight_Subsystem extends SubsystemBase {
   /* Raw CrossHair */
   public void periodic(double tx, double ty) {
 
+  }
+
+  private void DisplayLimelightData(){
+    /* Contour information */
+    
+    limelightTab.add("tv", NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(2375));
+    limelightTab.add("tx", NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(2375));
+    limelightTab.add("ty", NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(2375));
+    limelightTab.add("ta", NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(2375));
+    limelightTab.add("ts", NetworkTableInstance.getDefault().getTable("limelight").getEntry("ts").getDouble(2375));
+    limelightTab.add("tl", NetworkTableInstance.getDefault().getTable("limelight").getEntry("tl").getDouble(2375));
+    limelightTab.add("tshort", NetworkTableInstance.getDefault().getTable("limelight").getEntry("tshort").getDouble(2375));
+    limelightTab.add("tlong", NetworkTableInstance.getDefault().getTable("limelight").getEntry("tlong").getDouble(2375));
+    limelightTab.add("thor", NetworkTableInstance.getDefault().getTable("limelight").getEntry("thor").getDouble(2375));
+    limelightTab.add("tvert", NetworkTableInstance.getDefault().getTable("limelight").getEntry("tvert").getDouble(2375));
+    limelightTab.add("getpipe", NetworkTableInstance.getDefault().getTable("limelight").getEntry("getpipe").getDouble(2375));
+    limelightTab.add("camtran", NetworkTableInstance.getDefault().getTable("limelight").getEntry("camtran").getDouble(2375));
+  
+    /* Raw Contours */
+    limelightTab.add("tx0", NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx0").getDouble(2375));
+    limelightTab.add("ty0", NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty0").getDouble(2375));
+    limelightTab.add("ta0", NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta0").getDouble(2375));
+    limelightTab.add("ts0", NetworkTableInstance.getDefault().getTable("limelight").getEntry("ts0").getDouble(2375));
+    limelightTab.add("tx1", NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx1").getDouble(2375));
+    limelightTab.add("ty1", NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty1").getDouble(2375));
+    limelightTab.add("ta1", NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta1").getDouble(2375));
+    limelightTab.add("ts1", NetworkTableInstance.getDefault().getTable("limelight").getEntry("ts1").getDouble(2375));
+    limelightTab.add("tx2", NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx2").getDouble(2375));
+    limelightTab.add("ty2", NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty2").getDouble(2375));
+    limelightTab.add("ta2", NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta2").getDouble(2375));
+    limelightTab.add("ts2", NetworkTableInstance.getDefault().getTable("limelight").getEntry("ts2").getDouble(2375));
+
+    /* Raw Crosshair */
+    limelightTab.add("cx0", NetworkTableInstance.getDefault().getTable("limelight").getEntry("cx0").getDouble(2375));
+    limelightTab.add("cy0", NetworkTableInstance.getDefault().getTable("limelight").getEntry("cy0").getDouble(2375));
+    limelightTab.add("cx1", NetworkTableInstance.getDefault().getTable("limelight").getEntry("cx1").getDouble(2375));
+    limelightTab.add("cy1", NetworkTableInstance.getDefault().getTable("limelight").getEntry("cy1").getDouble(2375));
   }
 }
