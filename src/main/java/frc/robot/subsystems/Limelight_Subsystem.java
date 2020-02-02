@@ -37,17 +37,15 @@ public class Limelight_Subsystem extends SubsystemBase {
   /* To be completed */
 
   /* Contour Information - 1 if found, 0 is not */
-  public boolean Find_Target(){
-    int tv = (int)NetworkTableInstance.getDefault().getTable("2375_Pipeline").getEntry("tv").getDouble(2375);
-    if(tv > 0){
-      return true;
 
-    }
-    else{
-      return false;
-    }
+  public void Find_Target(){
+
   }
 
+  /*public boolean Get_Target() {
+    int tv = table.getEntry("tv").getDouble(0);
+    return tv;
+  } */
   public double Get_X(){
     double tx = table.getEntry("tx").getDouble(2375);
     return tx;
@@ -193,7 +191,9 @@ public class Limelight_Subsystem extends SubsystemBase {
     limelightTab.add("cy1", table.getEntry("cy1").getDouble(0));
   }
   private void UpdateLimelightData() {
-    SmartDashboard.putNumber("LimelightX", Get_X());
-    SmartDashboard.putNumber("LimelightY", Get_Y());
+    limelightTab.add("tx", table.getEntry("tx").getDouble(0));
+    // SmartDashboard.putNumber("LimelightY", Get_Y());
+    // SmartDashboard.putNumber("LimelightArea", Get_Area());
+    
   }
 }
