@@ -45,6 +45,19 @@
               "Layout/Label position": "BOTTOM",
               "_children": []
             }
+          },
+          "4,0": {
+            "size": [
+              2,
+              4
+            ],
+            "content": {
+              "_type": "Subsystem Layout",
+              "_source0": "network_table:///LiveWindow/MotorControllerSubsystem",
+              "_title": "MotorControllerSubsystem",
+              "Layout/Label position": "BOTTOM",
+              "_children": []
+            }
           }
         }
       }
