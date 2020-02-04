@@ -7,9 +7,18 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.PWMVictorSPX;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.geometry.Pose2d;
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
+import edu.wpi.first.wpilibj.util.Units;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -19,16 +28,17 @@ public class DriveTrain_Subsystem extends SubsystemBase {
      */
 
     /* Left Motors */
-    private final PWMVictorSPX m_leftFront = new PWMVictorSPX(Constants.MOTOR_LEFTFRONT);                         // Left Front Motor using PWM Victor
-    private final PWMVictorSPX m_leftRear = new PWMVictorSPX(Constants.MOTOR_LEFTREAR);                          // Left Rear Motor using PWM Victor
-    SpeedControllerGroup m_left = new SpeedControllerGroup(m_leftFront, m_leftRear);      // Left Front + Left Rear synchronized control
+    private final TalonFX m_leftFront = new TalonFX(Constants.MOTOR_LEFTFRONT);     // Left Front Motor using PWM Victor
+    private final TalonFX m_leftRear = new TalonFX(Constants.MOTOR_LEFTREAR);       // Left Rear Motor using PWM Victor
 
     /* Right Motors */
-    private final PWMVictorSPX m_rightFront = new PWMVictorSPX(Constants.MOTOR_RIGHTFRONT);                        // Right Front Motor using PWM Victor
-    private final PWMVictorSPX m_rightRear = new PWMVictorSPX(Constants.MOTOR_RIGHTREAR);                         // Right Rear Motor using PWM Victor
-    SpeedControllerGroup m_right = new SpeedControllerGroup(m_rightFront, m_rightRear);   // Right Front + Right Rear synchronized control
+    private final TalonFX m_rightFront = new TalonFX(Constants.MOTOR_RIGHTFRONT);   // Right Front Motor using PWM Victor
+    private final TalonFX m_rightRear = new TalonFX(Constants.MOTOR_RIGHTREAR);     // Right Rear Motor using PWM Victor
 
-    private DifferentialDrive m_robotDrive = new DifferentialDrive(m_left,m_right);
+    AHRS gyro = new AHRS(SPI.Port.kMXP);
+
+    DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(Units.inchesToMeters(21.5));
+    DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(getHeading());
 
     public DriveTrain_Subsystem() {
         // DriveTrain Subsystem Constructor //
@@ -39,7 +49,11 @@ public class DriveTrain_Subsystem extends SubsystemBase {
         // This method will be called once per scheduler run
     }
 
-    public void arcadeDrive(double drive_speed, double steer_speed){
+    public Rotation2d getHeading(){
+        return Rotation2d.fromDegrees(-gyro.getAngle());
+    }
+
+/*     public void arcadeDrive(double drive_speed, double steer_speed){
         // Read joystick input and translate into arcade drive //
         m_robotDrive.arcadeDrive(drive_speed, steer_speed);
     }
@@ -47,5 +61,5 @@ public class DriveTrain_Subsystem extends SubsystemBase {
     public void tankDrive(double left_speed, double right_speed){
         // Read joystick input and translate into tank drive //
         m_robotDrive.tankDrive(left_speed, right_speed);
-    }
+    } */
 }

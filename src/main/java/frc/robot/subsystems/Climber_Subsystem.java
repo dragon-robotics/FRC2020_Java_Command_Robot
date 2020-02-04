@@ -31,12 +31,10 @@ public class Climber_Subsystem extends SubsystemBase {
 
     public void Move_Hook(double motor_speed) {
         winch_2.set(ControlMode.PercentOutput, motor_speed);
-
     }
     
     public void Climb_Up(){
         winch_1.set(ControlMode.PercentOutput, 1.0);
-
     }
 
     public void Climb_Down(){
