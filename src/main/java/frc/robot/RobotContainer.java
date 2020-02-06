@@ -19,6 +19,7 @@ import frc.robot.commands.Intake_Stop;
 import frc.robot.commands.Move_Hook;
 import frc.robot.commands.Piston_Intake_In;
 import frc.robot.commands.Piston_Intake_Out;
+import frc.robot.commands.Set_LED;
 import frc.robot.commands.Shooter_Shoot_Button;
 import frc.robot.commands.Shooter_Shoot_Joy;
 import frc.robot.commands.Stop_Climb;
@@ -27,6 +28,7 @@ import frc.robot.subsystems.Compressor_Subsystem;
 import frc.robot.subsystems.DriveTrain_Subsystem;
 import frc.robot.subsystems.Intake_Subsystem;
 import frc.robot.subsystems.Limelight_Subsystem;
+import frc.robot.subsystems.NavXIMU_Subsystem;
 import frc.robot.subsystems.Shooter_Subsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -47,6 +49,7 @@ public class RobotContainer {
     private final Intake_Subsystem m_intakeSubsystem = new Intake_Subsystem();
     private final Limelight_Subsystem n_limelightSubsystem = new Limelight_Subsystem();
     private final Compressor_Subsystem p_compressorSubsystem = new Compressor_Subsystem();
+    private final NavXIMU_Subsystem n_navXIMU_Subsystem = new NavXIMU_Subsystem();
 
     // Commands //
     private final Arcade_Drive m_arcadeDriveCommand = new Arcade_Drive(m_driveTrainSubsystem);
@@ -61,6 +64,7 @@ public class RobotContainer {
     private final Piston_Intake_Out p_Intake_Out = new Piston_Intake_Out(m_intakeSubsystem);
     private final Piston_Intake_In p_Intake_In = new Piston_Intake_In(m_intakeSubsystem);
     private final Find_Target n_Find_Target = new Find_Target(n_limelightSubsystem, m_driveTrainSubsystem);
+    private final Set_LED n_Set_LED = new Set_LED(n_limelightSubsystem);
     private final Compressor_Start p_Compressor_Start = new Compressor_Start(p_compressorSubsystem);
 
 
@@ -109,7 +113,7 @@ public class RobotContainer {
         m_shooterSubsystem.setDefaultCommand(m_Shooter_Shoot_Joy);
         m_intakeSubsystem.setDefaultCommand(m_Intake_Stop);
         p_compressorSubsystem.setDefaultCommand(p_Compressor_Start);
-        n_limelightSubsystem.setDefaultCommand(defaultCommand);
+        n_limelightSubsystem.setDefaultCommand(n_Set_LED);
     }
 
     /**
@@ -129,6 +133,7 @@ public class RobotContainer {
         j_stick_control_Y.whenPressed(p_Intake_In);
 
         j_stick_driver_A.whenHeld(n_Find_Target);
+        j_stick_driver_A.whenReleased(n_Set_LED);
     }
 
     /**

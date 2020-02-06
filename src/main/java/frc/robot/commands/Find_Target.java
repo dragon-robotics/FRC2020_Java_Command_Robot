@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.subsystems.DriveTrain_Subsystem;
 import frc.robot.subsystems.Limelight_Subsystem;
+import frc.robot.subsystems.NavXIMU_Subsystem;
 
 public class Find_Target extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
@@ -21,7 +22,9 @@ public class Find_Target extends CommandBase {
   /**
    * Creates a new Find_Target.
    */
-
+  NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+  int P = 1;
+  float error = 0;
 
   public Find_Target(Limelight_Subsystem subsystem, DriveTrain_Subsystem subsystem2) {
     n_subsystem = subsystem;
@@ -39,15 +42,18 @@ public class Find_Target extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
+    int tx = (int)n_subsystem.Get_X();
     float steer_speed = 0.5f;
     float direction = 1f; 
-
-    if (direction < 1) {
+    Target_Detected();
+    if (tx > 0) {
       m_subsystem.arcadeDrive(0, steer_speed);
     }
-    else {
+    else if (tx < 0) {
       m_subsystem.arcadeDrive(0, -steer_speed);
+    }
+    else {
+      m_subsystem.arcadeDrive(0, steer_speed);
     }
   }
 
@@ -67,11 +73,17 @@ public class Find_Target extends CommandBase {
     }
   }
   public boolean Target_Detected() {
-    NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
-    int tv = (int)table.getEntry("tv").getDouble(0);
+    int tv = (int)n_subsystem.Get_Target();
+    double ta = n_subsystem.Get_Area();
+    int tx = (int)n_subsystem.Get_X();
 
-    if(tv > 0) {
-      return true;
+    if((tv == 1) && (ta > 2.2)) {
+      if (tx == 0) {
+        return true;
+      }
+      else {
+        return false;
+      }
 
     }
     else {

@@ -42,10 +42,10 @@ public class Limelight_Subsystem extends SubsystemBase {
 
   }
 
-  /*public boolean Get_Target() {
-    int tv = table.getEntry("tv").getDouble(0);
+  public double Get_Target() {
+    double tv = table.getEntry("tv").getDouble(0);
     return tv;
-  } */
+  } 
   public double Get_X(){
     double tx = table.getEntry("tx").getDouble(2375);
     return tx;
