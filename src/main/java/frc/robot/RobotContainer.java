@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.commands.Arcade_Drive;
+import frc.robot.commands.Tank_Drive;
 import frc.robot.commands.Climb_Down;
 import frc.robot.commands.Climb_Up;
 import frc.robot.commands.Compressor_Start;
@@ -49,7 +50,7 @@ public class RobotContainer {
     // private final Compressor_Subsystem p_compressorSubsystem = new Compressor_Subsystem();
 
     // Commands //
-    private final Arcade_Drive m_arcadeDriveCommand = new Arcade_Drive(m_driveTrainSubsystem);
+    private final Arcade_Drive m_tankDriveCommand = new Tank_Drive(m_driveTrainSubsystem);
     // private final Move_Hook m_Move_Hook = new Move_Hook(m_climberSubsystem);
     // private final Climb_Up m_climbUpCommand = new Climb_Up(m_climberSubsystem);
     // private final Climb_Down m_climbDownCommand = new Climb_Down(m_climberSubsystem);

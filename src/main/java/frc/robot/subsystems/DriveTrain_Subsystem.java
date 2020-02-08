@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.kauailabs.navx.frc.AHRS;
 
@@ -28,12 +29,12 @@ public class DriveTrain_Subsystem extends SubsystemBase {
      */
 
     /* Left Motors */
-    private final TalonFX m_leftFront = new TalonFX(Constants.MOTOR_LEFTFRONT);     // Left Front Motor using PWM Victor
-    private final TalonFX m_leftRear = new TalonFX(Constants.MOTOR_LEFTREAR);       // Left Rear Motor using PWM Victor
+    private final TalonFX m_leftFront = new TalonFX(Constants.MOTOR_LEFTFRONT);     // Left Front Motor using Talon FX
+    private final TalonFX m_leftRear = new TalonFX(Constants.MOTOR_LEFTREAR);       // Left Rear Motor using Talon FX
 
     /* Right Motors */
-    private final TalonFX m_rightFront = new TalonFX(Constants.MOTOR_RIGHTFRONT);   // Right Front Motor using PWM Victor
-    private final TalonFX m_rightRear = new TalonFX(Constants.MOTOR_RIGHTREAR);     // Right Rear Motor using PWM Victor
+    private final TalonFX m_rightFront = new TalonFX(Constants.MOTOR_RIGHTFRONT);   // Right Front Motor using Talon FX
+    private final TalonFX m_rightRear = new TalonFX(Constants.MOTOR_RIGHTREAR);     // Right Rear Motor using Talon FX
 
     AHRS gyro = new AHRS(SPI.Port.kMXP);
 
@@ -42,6 +43,8 @@ public class DriveTrain_Subsystem extends SubsystemBase {
 
     public DriveTrain_Subsystem() {
         // DriveTrain Subsystem Constructor //
+        m_leftRear.follow(m_leftFront);
+        m_rightRear.follow(m_rightFront);
     }
 
     @Override
@@ -53,13 +56,14 @@ public class DriveTrain_Subsystem extends SubsystemBase {
         return Rotation2d.fromDegrees(-gyro.getAngle());
     }
 
-/*     public void arcadeDrive(double drive_speed, double steer_speed){
+    public void arcadeDrive(double drive_speed, double steer_speed){
         // Read joystick input and translate into arcade drive //
-        m_robotDrive.arcadeDrive(drive_speed, steer_speed);
+        // m_robotDrive.arcadeDrive(drive_speed, steer_speed);
     }
 
     public void tankDrive(double left_speed, double right_speed){
         // Read joystick input and translate into tank drive //
-        m_robotDrive.tankDrive(left_speed, right_speed);
-    } */
+        m_leftFront.set(ControlMode.PercentOutput, left_speed);
+        m_rightFront.set(ControlMode.PercentOutput, right_speed);
+    }
 }

@@ -19,11 +19,11 @@ public final class Constants {
   
     /* Left Motor */
     public static final int MOTOR_LEFTFRONT = 3;
-    public static final int MOTOR_LEFTREAR = 1;
+    public static final int MOTOR_LEFTREAR = 4;
 
     /* Right Motor */
-    public static final int MOTOR_RIGHTFRONT = 2;
-    public static final int MOTOR_RIGHTREAR = 0;
+    public static final int MOTOR_RIGHTFRONT = 1;
+    public static final int MOTOR_RIGHTREAR = 2;
 
     /* TalonSRX */
     public static final int TALONSRX_WINCH = 1;
