@@ -28,7 +28,7 @@ public class DriveTrain_Subsystem extends SubsystemBase {
     private final PWMVictorSPX m_rightRear = new PWMVictorSPX(Constants.MOTOR_RIGHTREAR);                         // Right Rear Motor using PWM Victor
     SpeedControllerGroup m_right = new SpeedControllerGroup(m_rightFront, m_rightRear);   // Right Front + Right Rear synchronized control
 
-    private DifferentialDrive m_robotDrive = new DifferentialDrive(m_left,m_right);
+    private DifferentialDrive m_robotDrive = new DifferentialDrive(m_left, m_right);
 
     public DriveTrain_Subsystem() {
         // DriveTrain Subsystem Constructor //

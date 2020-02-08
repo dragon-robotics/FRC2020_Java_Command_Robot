@@ -87,6 +87,16 @@ public class NavXIMU_Subsystem extends SubsystemBase {
       DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
     }
   }
+  public void Zero_Angle() {
+    double angle = ahrs.getYaw();
+    if (angle > 0) {
+
+    }
+  }
+
+  public void Move_Forward() {
+  
+  }
 
   @Override
   public void periodic() {
