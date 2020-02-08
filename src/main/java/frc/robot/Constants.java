@@ -16,7 +16,14 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-  
+  public final class Limelight {
+    public static final double kP = 0.05;
+    public static final double kI = 0;
+    public static final double kD = 0;
+    public static final double setPoint = 0;
+    public static final double setPercentTolerance = 0.01;
+  }
+
     /* Left Motor */
     public static final int MOTOR_LEFTFRONT = 3;
     public static final int MOTOR_LEFTREAR = 1;

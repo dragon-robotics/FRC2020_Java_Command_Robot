@@ -38,8 +38,11 @@ public class Limelight_Subsystem extends SubsystemBase {
 
   /* Contour Information - 1 if found, 0 is not */
 
-  public void Find_Target(){
+  public void Find_Target() {
 
+  }
+  public void Align_PID () {
+    
   }
 
   public double Get_Target() {

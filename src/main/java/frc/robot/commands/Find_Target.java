@@ -42,19 +42,9 @@ public class Find_Target extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    int tx = (int)n_subsystem.Get_X();
     float steer_speed = 0.5f;
     float direction = 1f; 
-    Target_Detected();
-    if (tx > 0) {
-      m_subsystem.arcadeDrive(0, steer_speed);
-    }
-    else if (tx < 0) {
-      m_subsystem.arcadeDrive(0, -steer_speed);
-    }
-    else {
-      m_subsystem.arcadeDrive(0, steer_speed);
-    }
+    m_subsystem.arcadeDrive(0, steer_speed);
   }
 
   // Called once the command ends or is interrupted.
@@ -78,12 +68,7 @@ public class Find_Target extends CommandBase {
     int tx = (int)n_subsystem.Get_X();
 
     if((tv == 1) && (ta > 2.2)) {
-      if (tx == 0) {
-        return true;
-      }
-      else {
-        return false;
-      }
+      return true;
 
     }
     else {
