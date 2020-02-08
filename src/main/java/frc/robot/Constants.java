@@ -17,11 +17,21 @@ package frc.robot;
  */
 public final class Constants {
   public final class Limelight {
-    public static final double kP = 0.05;
+    public static final double kP = 0.04;
     public static final double kI = 0;
     public static final double kD = 0;
     public static final double setPoint = 0;
     public static final double setPercentTolerance = 0.01;
+  }
+  public final class Shooter {
+    public static final double kP = 0.5;
+    public static final double kI = 0;
+    public static final double kD = 0;
+    public static final int setPoint = 0;
+    public static final int setPercentTolerance = 0;
+  }
+  public final class Drivetrain {
+
   }
 
     /* Left Motor */
@@ -31,6 +41,10 @@ public final class Constants {
     /* Right Motor */
     public static final int MOTOR_RIGHTFRONT = 2;
     public static final int MOTOR_RIGHTREAR = 0;
+
+    /* SparkMax */
+    public static final int SPARKMAX_SHOOT_1 = 1;
+    public static final int SPARKMAX_SHOOT_2 = 2;
 
     /* TalonSRX */
     public static final int TALONSRX_WINCH = 1;
