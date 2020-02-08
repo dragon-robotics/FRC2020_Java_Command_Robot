@@ -22,7 +22,8 @@ public class Intake_Subsystem extends SubsystemBase {
   private final TalonSRX intake = new TalonSRX(Constants.TALONSRX_INTAKE);
   private final TalonSRX intake_2 = new TalonSRX(Constants.TALONSRX_INTAKE_2);
 
-  private final DoubleSolenoid piston_1 = new DoubleSolenoid(Constants.DOUBLESOLENOID_INTAKE_1, Constants.DOUBLESOLENOID_INTAKE_2);
+  private final DoubleSolenoid piston_1 = new DoubleSolenoid(Constants.CAN_DOUBLESOLENOID_1_LEFT, Constants.CAN_DOUBLESOLENOID_1_RIGHT);
+  private final DoubleSolenoid piston_2 = new DoubleSolenoid(Constants.CAN_DOUBLESOLENOID_2_LEFT, Constants.CAN_DOUBLESOLENOID_2_RIGHT);
   public Intake_Subsystem() {
 
   }
@@ -38,9 +39,11 @@ public class Intake_Subsystem extends SubsystemBase {
   }
   public void Piston_Intake_Out() {
     piston_1.set(Value.kForward);
+    piston_2.set(Value.kForward);
   }
   public void Piston_Intake_In() {
     piston_1.set(Value.kReverse);
+    piston_2.set(Value.kReverse);
   }
   @Override
   public void periodic() {
