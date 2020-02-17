@@ -9,6 +9,9 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import frc.robot.RobotContainer;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj.RobotController;
@@ -18,8 +21,8 @@ public class Shooter_Subsystem extends SubsystemBase {
   /**
    * Creates a new Shooter_Subsystem.
    */
-  private final TalonSRX shooter = new TalonSRX(Constants.TALONSRX_SHOOT);
-  private final TalonSRX shooter_1 = new TalonSRX(Constants.TALONSRX_SHOOT_2);
+  private final CANSparkMax shooter = new CANSparkMax(Constants.TALONSRX_SHOOT, MotorType.kBrushless);
+  private final CANSparkMax shooter_1 = new CANSparkMax(Constants.TALONSRX_SHOOT_2, MotorType.kBrushless);
   public Shooter_Subsystem() {
 
   }
@@ -28,18 +31,21 @@ public class Shooter_Subsystem extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
+  public void Shooter_RPM_PID() {
+    
+  }
   public void Shooter_Shoot_Joy(double shoot_speed) {
-    shooter.set(ControlMode.PercentOutput, shoot_speed); 
-    shooter.set(ControlMode.PercentOutput, shoot_speed);
+    shooter.set(shoot_speed);
+    shooter.set(shoot_speed);
 
   }
   public void Shooter_Shoot_Button() {
-    shooter.set(ControlMode.PercentOutput, 1);
-    shooter_1.set(ControlMode.PercentOutput, 1); 
+    shooter.set(1);
+    shooter_1.set(1); 
   }
 
   public void Stop_Shoot() {
-    shooter.set(ControlMode.PercentOutput, 0);
-    shooter_1.set(ControlMode.PercentOutput, 0);
+    shooter.set(0);
+    shooter_1.set(0);
   }
 }

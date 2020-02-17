@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.commands.Align_PID;
+import frc.robot.commands.Align_Profiled_PID;
 import frc.robot.commands.Arcade_Drive;
 import frc.robot.commands.Climb_Down;
 import frc.robot.commands.Climb_Up;
@@ -65,7 +66,7 @@ public class RobotContainer {
     private final Piston_Intake_In p_Intake_In = new Piston_Intake_In(m_intakeSubsystem);
     private final Find_Target n_Find_Target = new Find_Target(n_limelightSubsystem, m_driveTrainSubsystem);
     private final Set_LED n_Set_LED = new Set_LED(n_limelightSubsystem);
-    private final Align_PID n_Align_PID = new Align_PID(m_driveTrainSubsystem, n_limelightSubsystem);
+    private final Align_Profiled_PID n_Align_PID = new Align_Profiled_PID(m_driveTrainSubsystem, n_limelightSubsystem);
     private final Compressor_Start p_Compressor_Start = new Compressor_Start(p_compressorSubsystem);
 
 
@@ -114,7 +115,7 @@ public class RobotContainer {
         m_shooterSubsystem.setDefaultCommand(m_Shooter_Shoot_Joy);
         m_intakeSubsystem.setDefaultCommand(m_Intake_Stop);
         p_compressorSubsystem.setDefaultCommand(p_Compressor_Start);
-        n_limelightSubsystem.setDefaultCommand(n_Set_LED);
+       // n_limelightSubsystem.setDefaultCommand(n_Set_LED);
     }
 
     /**

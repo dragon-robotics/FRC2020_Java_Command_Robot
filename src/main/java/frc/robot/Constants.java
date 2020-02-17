@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import javax.xml.namespace.QName;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants.  This class should not be used for any other purpose.  All constants should be
@@ -17,11 +19,25 @@ package frc.robot;
  */
 public final class Constants {
   public final class Limelight {
+    public static final double kP = 0.08;
+    public static final double kI = 0;
+    public static final double kD = 0.03;
+    public static final double kS = 1;
+    public static final double kA = 1;
+    public static final double setPoint = 0;
+    public static final double setGoal = 0;
+    public static final double setPercentTolerance = 0.01;
+    public static final double setPositionTolerance = 0.015;
+    public static final double setVelocityTolerance = 0.05;
+  }
+
+  public final class Shooter {
     public static final double kP = 0.05;
     public static final double kI = 0;
     public static final double kD = 0;
+    public static final double kS = 0;
+    public static final double kA = 0;
     public static final double setPoint = 0;
-    public static final double setPercentTolerance = 0.01;
   }
 
     /* Left Motor */
@@ -31,6 +47,11 @@ public final class Constants {
     /* Right Motor */
     public static final int MOTOR_RIGHTFRONT = 2;
     public static final int MOTOR_RIGHTREAR = 0;
+
+    /* SparkMax */
+    public static final int SPARKMAX_ELEVATOR_1 = 1;
+    public static final int SPARKMAX_ELEVATOR_2 = 2;
+    public static final int SPARKMAX_ELEVATOR_3 = 3;
 
     /* TalonSRX */
     public static final int TALONSRX_WINCH = 1;
