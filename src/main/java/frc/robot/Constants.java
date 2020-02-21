@@ -49,9 +49,11 @@ public final class Constants {
     public static final int MOTOR_RIGHTREAR = 0;
 
     /* SparkMax */
-    public static final int SPARKMAX_ELEVATOR_1 = 1;
-    public static final int SPARKMAX_ELEVATOR_2 = 2;
-    public static final int SPARKMAX_ELEVATOR_3 = 3;
+    public static final int SPARKMAX_SHOOT_1 = 1;
+    public static final int SPARKMAX_SHOOT_2 = 2;
+    public static final int SPARKMAX_ELEVATOR_1 = 3;
+    public static final int SPARKMAX_ELEVATOR_2 = 4;
+    public static final int SPARKMAX_ELEVATOR_3 = 5;
 
     /* TalonSRX */
     public static final int TALONSRX_WINCH = 1;
