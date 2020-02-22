@@ -8,20 +8,18 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Elevator_Subsystem;
+import frc.robot.subsystems.Intake_Subsystem;
 
-public class Stop_Elevator extends CommandBase {
-  @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
-
+public class Indexer_Stop extends CommandBase {
+  @SuppressWarnings ({ "PMD.UnusedPrivateField", "PMD.SingularField" })
+  private final Intake_Subsystem m_subsystem;
   /**
-   * Creates a new Stop_Elevator.
+   * Creates a new Indexer_Stop.
    */
-  private final Elevator_Subsystem m_subsystem;
-  public Stop_Elevator(Elevator_Subsystem subsystem) {
-    // Use addRequirements() here to declare subsystem dependencies.
+  public Indexer_Stop(Intake_Subsystem subsystem) {
     m_subsystem = subsystem;
-
-    addRequirements(subsystem);
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(m_subsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -32,7 +30,7 @@ public class Stop_Elevator extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_subsystem.Stop_Elevator();
+    m_subsystem.Indexer_Stop();
   }
 
   // Called once the command ends or is interrupted.

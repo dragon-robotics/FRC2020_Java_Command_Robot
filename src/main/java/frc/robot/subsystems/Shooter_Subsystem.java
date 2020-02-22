@@ -62,17 +62,17 @@ public class Shooter_Subsystem extends SubsystemBase {
     
     // This method will be called once per scheduler run
   }
-  public void Shooter_Shoot_Joy(double shoot_speed) {
+  public void Shoot_Joy(double shoot_speed) {
     shooter.set(shoot_speed); 
     shooter_1.set(shoot_speed);
 
   }
-  public void Shooter_Shoot_Button() {
+  public void Shoot_Button() {
     shooter.set(1);
     shooter_1.set(1); 
   }
 
-  public void Stop_Shoot() {
+  public void Shoot_Stop() {
     shooter.set(0);
     shooter_1.set(0);
   }

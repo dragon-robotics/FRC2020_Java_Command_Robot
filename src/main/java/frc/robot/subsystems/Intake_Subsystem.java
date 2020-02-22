@@ -20,31 +20,54 @@ public class Intake_Subsystem extends SubsystemBase {
    * Creates a new Intake_Subsystem.
    */
   private final TalonSRX intake = new TalonSRX(Constants.TALONSRX_INTAKE);
-  private final TalonSRX intake_2 = new TalonSRX(Constants.TALONSRX_INTAKE_2);
 
-  private final DoubleSolenoid piston_1 = new DoubleSolenoid(Constants.CAN_DOUBLESOLENOID_1_LEFT, Constants.CAN_DOUBLESOLENOID_1_RIGHT);
-  private final DoubleSolenoid piston_2 = new DoubleSolenoid(Constants.CAN_DOUBLESOLENOID_2_LEFT, Constants.CAN_DOUBLESOLENOID_2_RIGHT);
+  private final TalonSRX indexer_bottom = new TalonSRX(Constants.TALONSRX_INDEXER_BOT);
+  private final TalonSRX indexer_top = new TalonSRX(Constants.TALONSRX_INDEXER_TOP);
+
+  private final DoubleSolenoid piston_left = new DoubleSolenoid(Constants.DOUBLESOLENOID_INTAKE_LEFT, Constants.DOUBLESOLENOID_INTAKE_LEFT);
+  private final DoubleSolenoid piston_right = new DoubleSolenoid(Constants.DOUBLESOLENOID_INTAKE_RIGHT, Constants.DOUBLESOLENOID_INTAKE_RIGHT);
+  
   public Intake_Subsystem() {
 
   }
 
-  public void Intake() {
-    intake.set(ControlMode.PercentOutput, -1);
-    intake_2.set(ControlMode.PercentOutput, -1);
-
+  public void Outtake_PowerCell(){
+    intake.set(ControlMode.PercentOutput, 1);
   }
+
+  public void Intake_PowerCell() {
+    intake.set(ControlMode.PercentOutput, -1);
+  }
+  
   public void Intake_Stop() {
     intake.set(ControlMode.PercentOutput, 0);
-    intake_2.set(ControlMode.PercentOutput, 0);
   }
-  public void Piston_Intake_Out() {
-    piston_1.set(Value.kForward);
-    piston_2.set(Value.kForward);
+  
+  public void Intake_Deploy() {
+    piston_left.set(Value.kForward);
+    piston_right.set(Value.kForward);
   }
-  public void Piston_Intake_In() {
-    piston_1.set(Value.kReverse);
-    piston_2.set(Value.kReverse);
+  
+  public void Intake_Retract() {
+    piston_left.set(Value.kReverse);
+    piston_right.set(Value.kReverse);
   }
+
+  public void Indexer_To_Shooter(){
+    indexer_top.set(ControlMode.PercentOutput, 1);
+    indexer_bottom.set(ControlMode.PercentOutput, -1);
+  }
+
+  public void Indexer_To_Intake(){
+    indexer_top.set(ControlMode.PercentOutput, -1);
+    indexer_bottom.set(ControlMode.PercentOutput, 1);
+  }
+
+  public void Indexer_Stop(){
+    indexer_top.set(ControlMode.PercentOutput, 0);
+    indexer_bottom.set(ControlMode.PercentOutput, 0);
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

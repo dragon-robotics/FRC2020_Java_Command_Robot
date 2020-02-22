@@ -12,13 +12,13 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Shooter_Subsystem;
 
-public class Shooter_Shoot_Joy extends CommandBase {
+public class Shoot_Joy extends CommandBase {
   @SuppressWarnings ({ "PMD.UnusedPrivateField", "PMD.SingularField" })
   /**
-   * Creates a new Shooter_Shoot_Joy.
+   * Creates a new Shoot_Joy.
    */
   private final Shooter_Subsystem m_subsystem;
-  public Shooter_Shoot_Joy(Shooter_Subsystem subsystem) {
+  public Shoot_Joy(Shooter_Subsystem subsystem) {
     m_subsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
@@ -34,7 +34,7 @@ public class Shooter_Shoot_Joy extends CommandBase {
   public void execute() {
     double rightJoyY = RobotContainer.j_stick_control.getRawAxis(Constants.AXIS_RIGHT_Y);
 
-    m_subsystem.Shooter_Shoot_Joy(rightJoyY);
+    m_subsystem.Shoot_Joy(rightJoyY);
   }
 
   // Called once the command ends or is interrupted.

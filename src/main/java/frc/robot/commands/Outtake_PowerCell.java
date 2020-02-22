@@ -10,14 +10,16 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Intake_Subsystem;
 
-public class Piston_Intake_In extends CommandBase {
-  @SuppressWarnings ({ "PMD.UnusedPrivateField", "PMD.SingularField" })
+public class Outtake_PowerCell extends CommandBase {
+  @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
+  private final Intake_Subsystem m_subsystem;
+  
   /**
-   * Creates a new Piston_Intake_In.
+   * Creates a new Outtake_PowerCell.
    */
-  private final Intake_Subsystem p_subsystem;
-  public Piston_Intake_In(Intake_Subsystem subsystem) {
-    p_subsystem = subsystem;
+  public Outtake_PowerCell(Intake_Subsystem subsystem) {
+    // Use addRequirements() here to declare subsystem dependencies.
+    m_subsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
@@ -30,7 +32,7 @@ public class Piston_Intake_In extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    p_subsystem.Piston_Intake_In();
+    m_subsystem.Outtake_PowerCell();
   }
 
   // Called once the command ends or is interrupted.

@@ -39,13 +39,7 @@ public final class Constants {
     public static final double kA = 0;
     public static final double setPoint = 0;
   }
-  public final class Shooter {
-    public static final double kP = 0.5;
-    public static final double kI = 0;
-    public static final double kD = 0;
-    public static final int setPoint = 0;
-    public static final int setPercentTolerance = 0;
-  }
+  
   public final class Drivetrain {
 
   }
@@ -63,23 +57,22 @@ public final class Constants {
     public static final int SPARKMAX_SHOOT_2 = 2;
 
     /* SparkMax */
-    public static final int SPARKMAX_SHOOT_1 = 1;
-    public static final int SPARKMAX_SHOOT_2 = 2;
-    public static final int SPARKMAX_ELEVATOR_1 = 3;
-    public static final int SPARKMAX_ELEVATOR_2 = 4;
-    public static final int SPARKMAX_ELEVATOR_3 = 5;
+    public static final int SPARKMAX_SHOOTER_LEFT = 1;
+    public static final int SPARKMAX_SHOOTER_RIGHT = 2;
+    // public static final int SPARKMAX_ELEVATOR_1 = 3;
+    // public static final int SPARKMAX_ELEVATOR_2 = 4;
+    // public static final int SPARKMAX_ELEVATOR_3 = 5;
 
     /* TalonSRX */
     public static final int TALONSRX_WINCH = 1;
     public static final int TALONSRX_HOOK = 2;
-    public static final int TALONSRX_SHOOT = 3;
-    public static final int TALONSRX_SHOOT_2 = 4;
-    public static final int TALONSRX_INTAKE = 5;
-    public static final int TALONSRX_INTAKE_2 = 6;
+    public static final int TALONSRX_INTAKE = 3;
+    public static final int TALONSRX_INDEXER_TOP = 4;
+    public static final int TALONSRX_INDEXER_BOT = 5;
 
     /* Double Solenoid */
-    public static final int DOUBLESOLENOID_INTAKE_1 = 0;
-    public static final int DOUBLESOLENOID_INTAKE_2 = 1;
+    public static final int DOUBLESOLENOID_INTAKE_LEFT = 0;
+    public static final int DOUBLESOLENOID_INTAKE_RIGHT = 1;
 
     /* Joystick port */
     public static final int  J_STICK_DRIVER = 0;
