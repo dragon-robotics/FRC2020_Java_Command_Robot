@@ -66,9 +66,11 @@ public final class Constants {
     /* TalonSRX */
     public static final int TALONSRX_WINCH = 1;
     public static final int TALONSRX_HOOK = 2;
-    public static final int TALONSRX_INTAKE = 3;
-    public static final int TALONSRX_INDEXER_TOP = 4;
-    public static final int TALONSRX_INDEXER_BOT = 5;
+    public static final int TALONSRX_INTAKE = 5;
+    public static final int TALONSRX_INDEXER_TOP = 8;
+    public static final int TALONSRX_INDEXER_BOT = 9;
+    public static final int TALONSRX_CLIMBER_LEFT = 6;
+    public static final int TALONSRX_CLIMBER_RIGHT = 7;
 
     /* Double Solenoid */
     public static final int DOUBLESOLENOID_INTAKE_LEFT = 0;
