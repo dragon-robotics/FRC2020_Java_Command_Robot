@@ -21,6 +21,9 @@ public class Compressor_Subsystem extends SubsystemBase {
   public void Compressor_Start() {
     compressor.setClosedLoopControl(true);
   }
+  public void Stop_Compressor() {
+    compressor.setClosedLoopControl(false);
+  }
 
   @Override
   public void periodic() {

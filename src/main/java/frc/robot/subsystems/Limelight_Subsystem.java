@@ -13,11 +13,19 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Limelight_Subsystem extends SubsystemBase {
 
+  private NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
   private String tabTitle;
   private ShuffleboardTab limelightTab;
+
+
+  private NetworkTable get_x;
+  private NetworkTable get_y;
+  private NetworkTable get_a;
+  private NetworkTable get_t; 
 
   public Limelight_Subsystem() {
     tabTitle = "LimelightTab";
@@ -29,63 +37,65 @@ public class Limelight_Subsystem extends SubsystemBase {
   /* To be completed */
 
   /* Contour Information - 1 if found, 0 is not */
-  public boolean Find_Target(){
-    int tv = (int)NetworkTableInstance.getDefault().getTable("2375_Pipeline").getEntry("tv").getDouble(2375);
-    if(tv > 0){
-      return true;
-    }
-    else{
-      return false;
-    }
+
+  public void Find_Target() {
+
+  }
+  public void Align_Profiled_PID () {
+    
   }
 
+  public double Get_Target() {
+    double tv = table.getEntry("tv").getDouble(0);
+    return tv;
+  } 
   public double Get_X(){
-    double tx = NetworkTableInstance.getDefault().getTable("2375_Pipeline").getEntry("tx").getDouble(2375);
+    double tx = table.getEntry("tx").getDouble(2375);
     return tx;
   }
 
   public double Get_Y() {
-    double ty = NetworkTableInstance.getDefault().getTable("2375_Pipeline").getEntry("ty").getDouble(2375);
+    double ty = table.getEntry("ty").getDouble(2375);
     return ty;
   }
 
   public double Get_Area() {
-    double ta = NetworkTableInstance.getDefault().getTable("2375_Pipeline").getEntry("ta").getDouble(2375);
+    double ta = table.getEntry("ta").getDouble(2375);
     return ta;
   }
 
   public double Get_Skew(){
-    double ts = NetworkTableInstance.getDefault().getTable("2375_Pipeline").getEntry("ts").getDouble(2375);
+    double ts = table.getEntry("ts").getDouble(2375);
     return ts;
   }
 
   public double Get_Pipeline_Latency(){
-    double tl = NetworkTableInstance.getDefault().getTable("2375_Pipeline").getEntry("tl").getDouble(2375);
+    double tl = table.getEntry("tl").getDouble(2375);
     return tl;
   }
 
   public double Get_Sidelength_Of_Shortest_Side_Of_Fitted_Bounding_Box(){
-    double tshort = NetworkTableInstance.getDefault().getTable("2375_Pipeline").getEntry("tshort").getDouble(2375);
+    double tshort = table.getEntry("tshort").getDouble(2375);
     return tshort;
   }
 
   public double Get_Sidelength_Of_Longest_Side_Of_Fitted_Bounding_Box() {
-    double tlong = NetworkTableInstance.getDefault().getTable("2375_Pipeline").getEntry("tlong").getDouble(2375);
+    double tlong = table.getEntry("tlong").getDouble(2375);
     return tlong;
   }
 
   public double Get_Horizontal_Sidelength_Of_Rough_Bounding_Box() {
-    double thor = NetworkTableInstance.getDefault().getTable("2375_Pipeline").getEntry("thor").getDouble(2375);
+    double thor = table.getEntry("thor").getDouble(2375);
     return thor;
   }
 
   public double Get_Vertical_Sidelength_Of_Rough_Bounding_Box() {
-    double tvert = NetworkTableInstance.getDefault().getTable("2375_Pipeline").getEntry("tvert").getDouble(2375);
+    double tvert = table.getEntry("tvert").getDouble(2375);
     return tvert;
   }
 
   public double Get_Pipeline(){
-    double getpipe = NetworkTableInstance.getDefault().getTable("2375_Pipeline").getEntry("getpipe").getDouble(2375);
+    double getpipe = table.getEntry("getpipe").getDouble(2375);
     return getpipe;
   }
 
@@ -99,7 +109,7 @@ public class Limelight_Subsystem extends SubsystemBase {
    * 3 - force on
    */
   public void Set_LED(int led_value){
-    NetworkTableInstance.getDefault().getTable("2375_Pipeline").getEntry("ledMode").setNumber(led_value);
+    table.getEntry("ledMode").setNumber(led_value);
   }
 
   /*
@@ -108,7 +118,7 @@ public class Limelight_Subsystem extends SubsystemBase {
    * 1 - Driver Camera (Increases Exposure, disables vision processing)
    */
   public void Set_Cam_Mode(int cam_mode) {
-    NetworkTableInstance.getDefault().getTable("2375_Pipeline").getEntry("camMode").setNumber(cam_mode);
+    table.getEntry("camMode").setNumber(cam_mode);
   }
 
   /*
@@ -116,7 +126,7 @@ public class Limelight_Subsystem extends SubsystemBase {
    * 0..9 - Select pipeline 0..9
    */
   public void Set_Pipeline(int pipeline) {
-    NetworkTableInstance.getDefault().getTable("2375_Pipeline").getEntry("pipeline").setNumber(pipeline);
+    table.getEntry("pipeline").setNumber(pipeline);
   }
 
   /*
@@ -126,7 +136,7 @@ public class Limelight_Subsystem extends SubsystemBase {
    * 2 - PiP Secondary - The primary camera stream is placed in the lower-right corner of the secondary camera stream
    */
   public void Set_Stream(int stream){
-    NetworkTableInstance.getDefault().getTable("2375_Pipeline").getEntry("stream").setNumber(stream);
+    table.getEntry("stream").setNumber(stream);
   }
 
   /*
@@ -135,7 +145,7 @@ public class Limelight_Subsystem extends SubsystemBase {
    * 1 - Take two snapshots per second
    */
   public void Set_Snapshot(int snapshot) {
-    NetworkTableInstance.getDefault().getTable("2375_Pipeline").getEntry("snapshot").setNumber(snapshot);
+    table.getEntry("snapshot").setNumber(snapshot);
   }
 
   /* Corners */
@@ -144,43 +154,49 @@ public class Limelight_Subsystem extends SubsystemBase {
 
   /* Raw CrossHair */
   public void periodic(double tx, double ty) {
-
+   UpdateLimelightData();
   }
 
   private void DisplayLimelightData(){
     /* Contour information */
     
-    limelightTab.add("tv", NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(2375));
-    limelightTab.add("tx", NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(2375));
-    limelightTab.add("ty", NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(2375));
-    limelightTab.add("ta", NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(2375));
-    limelightTab.add("ts", NetworkTableInstance.getDefault().getTable("limelight").getEntry("ts").getDouble(2375));
-    limelightTab.add("tl", NetworkTableInstance.getDefault().getTable("limelight").getEntry("tl").getDouble(2375));
-    limelightTab.add("tshort", NetworkTableInstance.getDefault().getTable("limelight").getEntry("tshort").getDouble(2375));
-    limelightTab.add("tlong", NetworkTableInstance.getDefault().getTable("limelight").getEntry("tlong").getDouble(2375));
-    limelightTab.add("thor", NetworkTableInstance.getDefault().getTable("limelight").getEntry("thor").getDouble(2375));
-    limelightTab.add("tvert", NetworkTableInstance.getDefault().getTable("limelight").getEntry("tvert").getDouble(2375));
-    limelightTab.add("getpipe", NetworkTableInstance.getDefault().getTable("limelight").getEntry("getpipe").getDouble(2375));
-    limelightTab.add("camtran", NetworkTableInstance.getDefault().getTable("limelight").getEntry("camtran").getDouble(2375));
+    limelightTab.add("tv", table.getEntry("tv").getDouble(0));
+    limelightTab.add("tx", table.getEntry("tx").getDouble(0));
+    limelightTab.add("ty", table.getEntry("ty").getDouble(0));
+    limelightTab.add("ta", table.getEntry("ta").getDouble(0));
+    limelightTab.add("ts", table.getEntry("ts").getDouble(0));
+    limelightTab.add("tl", table.getEntry("tl").getDouble(0));
+    limelightTab.add("tshort", table.getEntry("tshort").getDouble(0));
+    limelightTab.add("tlong", table.getEntry("tlong").getDouble(0));
+    limelightTab.add("thor", table.getEntry("thor").getDouble(0));
+    limelightTab.add("tvert", table.getEntry("tvert").getDouble(0));
+    limelightTab.add("getpipe", table.getEntry("getpipe").getDouble(0));
+    limelightTab.add("camtran", table.getEntry("camtran").getDouble(0));
   
     /* Raw Contours */
-    limelightTab.add("tx0", NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx0").getDouble(2375));
-    limelightTab.add("ty0", NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty0").getDouble(2375));
-    limelightTab.add("ta0", NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta0").getDouble(2375));
-    limelightTab.add("ts0", NetworkTableInstance.getDefault().getTable("limelight").getEntry("ts0").getDouble(2375));
-    limelightTab.add("tx1", NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx1").getDouble(2375));
-    limelightTab.add("ty1", NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty1").getDouble(2375));
-    limelightTab.add("ta1", NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta1").getDouble(2375));
-    limelightTab.add("ts1", NetworkTableInstance.getDefault().getTable("limelight").getEntry("ts1").getDouble(2375));
-    limelightTab.add("tx2", NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx2").getDouble(2375));
-    limelightTab.add("ty2", NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty2").getDouble(2375));
-    limelightTab.add("ta2", NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta2").getDouble(2375));
-    limelightTab.add("ts2", NetworkTableInstance.getDefault().getTable("limelight").getEntry("ts2").getDouble(2375));
+    limelightTab.add("tx0", table.getEntry("tx0").getDouble(0));
+    limelightTab.add("ty0", table.getEntry("ty0").getDouble(0));
+    limelightTab.add("ta0", table.getEntry("ta0").getDouble(0));
+    limelightTab.add("ts0", table.getEntry("ts0").getDouble(0));
+    limelightTab.add("tx1", table.getEntry("tx1").getDouble(0));
+    limelightTab.add("ty1", table.getEntry("ty1").getDouble(0));
+    limelightTab.add("ta1", table.getEntry("ta1").getDouble(0));
+    limelightTab.add("ts1", table.getEntry("ts1").getDouble(0));
+    limelightTab.add("tx2", table.getEntry("tx2").getDouble(0));
+    limelightTab.add("ty2", table.getEntry("ty2").getDouble(0));
+    limelightTab.add("ta2", table.getEntry("ta2").getDouble(0));
+    limelightTab.add("ts2", table.getEntry("ts2").getDouble(0));
 
     /* Raw Crosshair */
-    limelightTab.add("cx0", NetworkTableInstance.getDefault().getTable("limelight").getEntry("cx0").getDouble(2375));
-    limelightTab.add("cy0", NetworkTableInstance.getDefault().getTable("limelight").getEntry("cy0").getDouble(2375));
-    limelightTab.add("cx1", NetworkTableInstance.getDefault().getTable("limelight").getEntry("cx1").getDouble(2375));
-    limelightTab.add("cy1", NetworkTableInstance.getDefault().getTable("limelight").getEntry("cy1").getDouble(2375));
+    limelightTab.add("cx0", table.getEntry("cx0").getDouble(0));
+    limelightTab.add("cy0", table.getEntry("cy0").getDouble(0));
+    limelightTab.add("cx1", table.getEntry("cx1").getDouble(0));
+    limelightTab.add("cy1", table.getEntry("cy1").getDouble(0));
+  }
+  private void UpdateLimelightData() {
+    limelightTab.add("tx", table.getEntry("tx").getDouble(0));
+    // SmartDashboard.putNumber("LimelightY", Get_Y());
+    // SmartDashboard.putNumber("LimelightArea", Get_Area());
+    
   }
 }
