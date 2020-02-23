@@ -21,9 +21,6 @@ public class Intake_Subsystem extends SubsystemBase {
    */
   private final TalonSRX intake = new TalonSRX(Constants.TALONSRX_INTAKE);
 
-  private final TalonSRX indexer_bottom = new TalonSRX(Constants.TALONSRX_INDEXER_BOT);
-  private final TalonSRX indexer_top = new TalonSRX(Constants.TALONSRX_INDEXER_TOP);
-
   // private final DoubleSolenoid piston_left = new DoubleSolenoid(Constants.DOUBLESOLENOID_INTAKE_LEFT, Constants.DOUBLESOLENOID_INTAKE_LEFT);
   // private final DoubleSolenoid piston_right = new DoubleSolenoid(Constants.DOUBLESOLENOID_INTAKE_RIGHT, Constants.DOUBLESOLENOID_INTAKE_RIGHT);
   
@@ -32,11 +29,11 @@ public class Intake_Subsystem extends SubsystemBase {
   }
 
   public void Outtake_PowerCell(){
-    intake.set(ControlMode.PercentOutput, 1);
+    intake.set(ControlMode.PercentOutput, 0.5);
   }
 
   public void Intake_PowerCell() {
-    intake.set(ControlMode.PercentOutput, -1);
+    intake.set(ControlMode.PercentOutput, -0.5);
   }
   
   public void Intake_Stop() {
@@ -52,21 +49,6 @@ public class Intake_Subsystem extends SubsystemBase {
   //   piston_left.set(Value.kReverse);
   //   piston_right.set(Value.kReverse);
   // }
-
-  public void Indexer_To_Shooter(){
-    indexer_top.set(ControlMode.PercentOutput, 1);
-    indexer_bottom.set(ControlMode.PercentOutput, -1);
-  }
-
-  public void Indexer_To_Intake(){
-    indexer_top.set(ControlMode.PercentOutput, -1);
-    indexer_bottom.set(ControlMode.PercentOutput, 1);
-  }
-
-  public void Indexer_Stop(){
-    indexer_top.set(ControlMode.PercentOutput, 0);
-    indexer_bottom.set(ControlMode.PercentOutput, 0);
-  }
 
   @Override
   public void periodic() {

@@ -8,22 +8,25 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.InvertType;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Climber_Subsystem extends SubsystemBase {
   
-    private final TalonSRX winchLeft = new TalonSRX(Constants.TALONSRX_WINCH_LEFT);
-    private final TalonSRX winchRight = new TalonSRX(Constants.TALONSRX_WINCH_RIGHT);
-
-    private final TalonSRX hook = new TalonSRX(Constants.TALONSRX_HOOK);
+    private final WPI_TalonSRX winchLeft = new WPI_TalonSRX(Constants.TALONSRX_WINCH_LEFT);
+    private final WPI_TalonSRX winchRight = new WPI_TalonSRX(Constants.TALONSRX_WINCH_RIGHT);
+    
+    private final WPI_TalonSRX hook = new WPI_TalonSRX(Constants.TALONSRX_HOOK);
 
     /**
      * Creates a new Climber_Subsystem.
      */
     public Climber_Subsystem() {
-        // Set left winch to follow the right winch //
+        // Set right winch to follow the left winch //
+        winchRight.follow(winchLeft);
+        winchRight.setInverted(InvertType.OpposeMaster);
     }
 
     @Override
@@ -32,7 +35,7 @@ public class Climber_Subsystem extends SubsystemBase {
     }
 
     public void Move_Hook(double motor_speed) {
-        winchRight.set(ControlMode.PercentOutput, motor_speed);
+        hook.set(ControlMode.PercentOutput, motor_speed);
     }
     
     public void Climb_Up(){

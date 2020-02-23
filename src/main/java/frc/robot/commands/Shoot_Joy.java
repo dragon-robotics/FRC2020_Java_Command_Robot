@@ -34,7 +34,7 @@ public class Shoot_Joy extends CommandBase {
   public void execute() {
     double rightJoyY = RobotContainer.j_stick_control.getRawAxis(Constants.AXIS_RIGHT_Y);
 
-    m_subsystem.Shoot_Joy(rightJoyY);
+    m_subsystem.Shoot_Variable(rightJoyY);
   }
 
   // Called once the command ends or is interrupted.

@@ -11,12 +11,12 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Limelight_Subsystem;
 
 public class Set_LED extends CommandBase {
-  private final Limelight_Subsystem n_subsystem;
+  private final Limelight_Subsystem m_subsystem;
   /**
    * Creates a new Set_LED.
    */
   public Set_LED(Limelight_Subsystem subsystem) {
-    n_subsystem = subsystem;
+    m_subsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
@@ -29,7 +29,7 @@ public class Set_LED extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    n_subsystem.Set_LED(0);
+    m_subsystem.Set_LED(0);
   }
 
   // Called once the command ends or is interrupted.

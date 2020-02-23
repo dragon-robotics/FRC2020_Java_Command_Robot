@@ -12,12 +12,14 @@ import frc.robot.subsystems.Compressor_Subsystem;
 
 public class Compressor_Start extends CommandBase {
   @SuppressWarnings ({ "PMD.UnusedPrivateField", "PMD.SingularField" })
+  private final Compressor_Subsystem m_subsystem;
+  
   /**
    * Creates a new Compressor_Start.
    */
-  private final Compressor_Subsystem p_subsystem;
+  
   public Compressor_Start(Compressor_Subsystem subsystem) {
-    p_subsystem = subsystem;
+    m_subsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
@@ -30,7 +32,7 @@ public class Compressor_Start extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    p_subsystem.Compressor_Start();
+    m_subsystem.Compressor_Start();
   }
 
   // Called once the command ends or is interrupted.

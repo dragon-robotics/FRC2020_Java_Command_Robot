@@ -8,15 +8,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Intake_Subsystem;
+import frc.robot.subsystems.Indexer_Subsystem;
 
 public class Indexer_Stop extends CommandBase {
   @SuppressWarnings ({ "PMD.UnusedPrivateField", "PMD.SingularField" })
-  private final Intake_Subsystem m_subsystem;
+  private final Indexer_Subsystem m_subsystem;
   /**
    * Creates a new Indexer_Stop.
    */
-  public Indexer_Stop(Intake_Subsystem subsystem) {
+  public Indexer_Stop(Indexer_Subsystem subsystem) {
     m_subsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_subsystem);

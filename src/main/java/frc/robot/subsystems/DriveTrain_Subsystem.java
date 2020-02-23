@@ -30,13 +30,13 @@ public class DriveTrain_Subsystem extends SubsystemBase {
      */
 
     /* Left Motors */
-    private final WPI_TalonFX m_leftFront = new WPI_TalonFX(Constants.MOTOR_LEFTFRONT);     // Left Front Motor using PWM Victor
-    private final WPI_TalonFX m_leftRear = new WPI_TalonFX(Constants.MOTOR_LEFTREAR);       // Left Rear Motor using PWM Victor
+    private final WPI_TalonFX m_leftFront = new WPI_TalonFX(Constants.TALONFX_MOTOR_LEFTFRONT);     // Left Front Motor using PWM Victor
+    private final WPI_TalonFX m_leftRear = new WPI_TalonFX(Constants.TALONFX_MOTOR_LEFTREAR);       // Left Rear Motor using PWM Victor
     private final SpeedControllerGroup m_Left = new SpeedControllerGroup(m_leftFront, m_leftRear);
 
     /* Right Motors */
-    private final WPI_TalonFX m_rightFront = new WPI_TalonFX(Constants.MOTOR_RIGHTFRONT);   // Right Front Motor using PWM Victor
-    private final WPI_TalonFX m_rightRear = new WPI_TalonFX(Constants.MOTOR_RIGHTREAR);     // Right Rear Motor using PWM Victor
+    private final WPI_TalonFX m_rightFront = new WPI_TalonFX(Constants.TALONFX_MOTOR_RIGHTFRONT);   // Right Front Motor using PWM Victor
+    private final WPI_TalonFX m_rightRear = new WPI_TalonFX(Constants.TALONFX_MOTOR_RIGHTREAR);     // Right Rear Motor using PWM Victor
     private final SpeedControllerGroup m_Right = new SpeedControllerGroup(m_rightFront, m_rightRear);
 
     private final DifferentialDrive m_robotDrive = new DifferentialDrive(m_Left, m_Right);

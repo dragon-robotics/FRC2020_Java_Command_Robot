@@ -27,12 +27,13 @@ import frc.robot.commands.Intake_Stop;
 import frc.robot.commands.Move_Hook;
 import frc.robot.commands.Outtake_PowerCell;
 import frc.robot.commands.Set_LED;
-import frc.robot.commands.Shoot_Joy;
+import frc.robot.commands.Shoot_Trigger;
 import frc.robot.commands.Stop_Climb;
 import frc.robot.commands.Compressor_Stop;
 import frc.robot.subsystems.Climber_Subsystem;
 import frc.robot.subsystems.Compressor_Subsystem;
 import frc.robot.subsystems.DriveTrain_Subsystem;
+import frc.robot.subsystems.Indexer_Subsystem;
 import frc.robot.subsystems.Intake_Subsystem;
 import frc.robot.subsystems.Limelight_Subsystem;
 import frc.robot.subsystems.NavXIMU_Subsystem;
@@ -49,45 +50,61 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
     // The robot's subsystems and commands are defined here...
 
-    // Subsystems //
+    /* DriveTrain */
     private final DriveTrain_Subsystem m_driveTrainSubsystem = new DriveTrain_Subsystem();
-    // private final Climber_Subsystem m_climberSubsystem = new Climber_Subsystem();
-    private final Shooter_Subsystem m_shooterSubsystem = new Shooter_Subsystem();
-    private final Intake_Subsystem m_intakeSubsystem = new Intake_Subsystem();
-    private final Compressor_Subsystem m_compressorSubsystem = new Compressor_Subsystem();
-    // private final Limelight_Subsystem n_limelightSubsystem = new Limelight_Subsystem();
-
+    
     // DriveTrain Commands //
     private final Arcade_Drive m_arcadeDriveCommand = new Arcade_Drive(m_driveTrainSubsystem);
-    
-    // Compressor Commands //
-    // private final Compressor_Start m_Compressor_Start = new Compressor_Start(m_compressorSubsystem);
-    // private final Compressor_Stop m_Compressor_Stop = new Compressor_Stop(m_compressorSubsystem);
-    
-    // Shooter Commands //
-    private final Shoot_Joy m_Shoot_Joy = new Shoot_Joy(m_shooterSubsystem);
-    
-    // Intake/Indexer Commands //
+
+    /* Intake */
+    private final Intake_Subsystem m_intakeSubsystem = new Intake_Subsystem();
+
+    // Intake Commands //
     private final Intake_PowerCell m_Intake_PowerCell = new Intake_PowerCell(m_intakeSubsystem);
     private final Outtake_PowerCell m_Outtake_PowerCell = new Outtake_PowerCell(m_intakeSubsystem);
     private final Intake_Stop m_Intake_Stop = new Intake_Stop(m_intakeSubsystem);
     // private final Intake_Deploy m_Intake_Deploy = new Intake_Deploy(m_intakeSubsystem);
     // private final Intake_Retract m_Intake_Retract = new Intake_Retract(m_intakeSubsystem);
-    private final Indexer_To_Intake m_Indexer_To_Intake = new Indexer_To_Intake(m_intakeSubsystem);
-    private final Indexer_To_Shooter m_Indexer_To_Shooter = new Indexer_To_Shooter(m_intakeSubsystem);
-    private final Indexer_Stop m_Indexer_Stop = new Indexer_Stop(m_intakeSubsystem);
 
+    /* Indexer */
+    private final Indexer_Subsystem m_indexerSubsystem = new Indexer_Subsystem();
+    
+    // Indexer Commands //
+    private final Indexer_To_Intake m_Indexer_To_Intake = new Indexer_To_Intake(m_indexerSubsystem);
+    private final Indexer_To_Shooter m_Indexer_To_Shooter = new Indexer_To_Shooter(m_indexerSubsystem);
+    private final Indexer_Stop m_Indexer_Stop = new Indexer_Stop(m_indexerSubsystem);
+    
+    /* Shooter */
+    private final Shooter_Subsystem m_shooterSubsystem = new Shooter_Subsystem();
+    
+    // Shooter Commands //
+    private final Shoot_Trigger m_Shoot_Trigger = new Shoot_Trigger(m_shooterSubsystem);
+    
+    /* Climber */
+    // private final Climber_Subsystem m_climberSubsystem = new Climber_Subsystem();
+
+    
+    /* Compressor */
+    // private final Compressor_Subsystem m_compressorSubsystem = new Compressor_Subsystem();
+    
+    // Compressor Commands //
+    // private final Compressor_Start m_Compressor_Start = new Compressor_Start(m_compressorSubsystem);
+    // private final Compressor_Stop m_Compressor_Stop = new Compressor_Stop(m_compressorSubsystem);
+    
+    /* Limelight */
+    // private final Limelight_Subsystem m_limelightSubsystem = new Limelight_Subsystem();
+
+    /* NavX */
+    // private final NavXIMU_Subsystem mNavXIMUSubsystem = new NavXIMU_Subsystem();
+    
     // private final Move_Hook m_Move_Hook = new Move_Hook(m_climberSubsystem);
     // private final Climb_Up m_climbUpCommand = new Climb_Up(m_climberSubsystem);
     // private final Climb_Down m_climbDownCommand = new Climb_Down(m_climberSubsystem);
     // private final Stop_Climb m_stopClimbCommand = new Stop_Climb(m_climberSubsystem);
     // private final Shooter_Shoot_Button m_Shooter_Shoot_Button = new Shooter_Shoot_Button(m_shooterSubsystem);
-    // private final Piston_Intake_Out p_Intake_Out = new Piston_Intake_Out(m_intakeSubsystem);
-    // private final Piston_Intake_In p_Intake_In = new Piston_Intake_In(m_intakeSubsystem);
-    // private final Find_Target n_Find_Target = new Find_Target(n_limelightSubsystem, m_driveTrainSubsystem);
-    // private final Set_LED n_Set_LED = new Set_LED(n_limelightSubsystem);
-    // private final Align_Profiled_PID n_Align_PID = new Align_Profiled_PID(m_driveTrainSubsystem, n_limelightSubsystem);
-
+    // private final Find_Target n_Find_Target = new Find_Target(m_limelightSubsystem, m_driveTrainSubsystem);
+    // private final Set_LED n_Set_LED = new Set_LED(m_limelightSubsystem);
+    // private final Align_Profiled_PID n_Align_PID = new Align_Profiled_PID(m_driveTrainSubsystem, m_limelightSubsystem);
 
     // Commands for Autonomous Period //
     private final Arcade_Drive m_autoCommand = new Arcade_Drive(m_driveTrainSubsystem);
@@ -130,16 +147,15 @@ public class RobotContainer {
         // Default Command(s) //
         m_driveTrainSubsystem.setDefaultCommand(m_arcadeDriveCommand);  // Defaults to Arcade Drive
         
-        m_shooterSubsystem.setDefaultCommand(m_Shoot_Joy);
-        
-        // m_compressorSubsystem.setDefaultCommand(m_C ompressor_Start);
+        m_shooterSubsystem.setDefaultCommand(m_Shoot_Trigger);
         
         m_intakeSubsystem.setDefaultCommand(m_Intake_Stop);
-
+        
+        // m_compressorSubsystem.setDefaultCommand(m_C ompressor_Start);
         // m_climberSubsystem.setDefaultCommand(m_stopClimbCommand);    // Defaults to climber not running
         // m_climberSubsystem.setDefaultCommand(m_Move_Hook);              // Defaults to climber not running
         // m_intakeSubsystem.setDefaultCommand(m_Intake_Stop);
-        // n_limelightSubsystem.setDefaultCommand(n_Set_LED);
+        // m_limelightSubsystem.setDefaultCommand(n_Set_LED);
     }
 
     /**
@@ -169,9 +185,6 @@ public class RobotContainer {
 
         j_stick_control_RB.whenHeld(m_Indexer_To_Shooter);
         j_stick_control_RB.whenReleased(m_Indexer_Stop);
-
-        // j_stick_control_X.whenPressed(p_Intake_Out);
-        // j_stick_control_Y.whenPressed(p_Intake_In);
 
         // j_stick_driver_A.whenHeld(n_Find_Target);
         // j_stick_driver_A.whenReleased(n_Set_LED);

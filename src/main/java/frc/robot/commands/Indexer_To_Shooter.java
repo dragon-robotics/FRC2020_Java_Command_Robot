@@ -8,15 +8,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Intake_Subsystem;
+import frc.robot.subsystems.Indexer_Subsystem;
 
 public class Indexer_To_Shooter extends CommandBase {
   @SuppressWarnings ({ "PMD.UnusedPrivateField", "PMD.SingularField" })
-  private final Intake_Subsystem m_subsystem;
+  private final Indexer_Subsystem m_subsystem;
   /**
    * Creates a new Indexer_To_Shooter.
    */
-  public Indexer_To_Shooter(Intake_Subsystem subsystem) {
+  public Indexer_To_Shooter(Indexer_Subsystem subsystem) {
     m_subsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_subsystem);

@@ -45,12 +45,12 @@ public final class Constants {
   }
 
   /* Left Motor */
-  public static final int MOTOR_LEFTFRONT = 3;
-  public static final int MOTOR_LEFTREAR = 4;
+  public static final int TALONFX_MOTOR_LEFTFRONT = 3;
+  public static final int TALONFX_MOTOR_LEFTREAR = 4;
 
   /* Right Motor */
-  public static final int MOTOR_RIGHTFRONT = 1;
-  public static final int MOTOR_RIGHTREAR = 2;
+  public static final int TALONFX_MOTOR_RIGHTFRONT = 1;
+  public static final int TALONFX_MOTOR_RIGHTREAR = 2;
 
   /* SparkMax */
   public static final int SPARKMAX_SHOOTER_LEFT = 1;
