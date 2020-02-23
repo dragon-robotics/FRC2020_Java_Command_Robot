@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.commands.Align_PID;
+import frc.robot.commands.Align_Profiled_PID;
 import frc.robot.commands.Arcade_Drive;
 import frc.robot.commands.Climb_Down;
 import frc.robot.commands.Climb_Up;
@@ -24,6 +25,7 @@ import frc.robot.commands.Set_LED;
 import frc.robot.commands.Shooter_Shoot_Button;
 import frc.robot.commands.Shooter_Shoot_Joy;
 import frc.robot.commands.Stop_Climb;
+import frc.robot.commands.Stop_Compressor;
 import frc.robot.subsystems.Climber_Subsystem;
 import frc.robot.subsystems.Compressor_Subsystem;
 import frc.robot.subsystems.DriveTrain_Subsystem;
@@ -65,8 +67,9 @@ public class RobotContainer {
     private final Piston_Intake_In p_Intake_In = new Piston_Intake_In(m_intakeSubsystem);
     private final Find_Target n_Find_Target = new Find_Target(n_limelightSubsystem, m_driveTrainSubsystem);
     private final Set_LED n_Set_LED = new Set_LED(n_limelightSubsystem);
-    private final Align_PID n_Align_PID = new Align_PID(m_driveTrainSubsystem, n_limelightSubsystem);
+    private final Align_Profiled_PID n_Align_PID = new Align_Profiled_PID(m_driveTrainSubsystem, n_limelightSubsystem);
     private final Compressor_Start p_Compressor_Start = new Compressor_Start(p_compressorSubsystem);
+    private final Stop_Compressor p_Stop_Compressor = new Stop_Compressor(p_compressorSubsystem);
 
 
     // Commands for Autonomous Period //
@@ -112,9 +115,9 @@ public class RobotContainer {
         // m_climberSubsystem.setDefaultCommand(m_stopClimbCommand);       // Defaults to climber not running
         m_climberSubsystem.setDefaultCommand(m_Move_Hook);       // Defaults to climber not running
         m_shooterSubsystem.setDefaultCommand(m_Shooter_Shoot_Joy);
-        m_intakeSubsystem.setDefaultCommand(m_Intake_Stop);
+        //m_intakeSubsystem.setDefaultCommand(m_Intake_Stop);
         p_compressorSubsystem.setDefaultCommand(p_Compressor_Start);
-        n_limelightSubsystem.setDefaultCommand(n_Set_LED);
+       // n_limelightSubsystem.setDefaultCommand(n_Set_LED);
     }
 
     /**
@@ -127,8 +130,11 @@ public class RobotContainer {
         // j_stick_control_A.whenHeld(m_climbUpCommand);
         // j_stick_control_A.whenReleased(m_stopClimbCommand);
 
-        // j_stick_control_B.whenHeld(m_Intake);
-        // j_stick_control_B.whenReleased(m_Intake_Stop);
+        j_stick_control_RB.whenPressed(p_Stop_Compressor);
+        j_stick_control_RB.whenReleased(p_Compressor_Start);
+
+        j_stick_control_B.whenHeld(m_Intake);
+        j_stick_control_B.whenReleased(m_Intake_Stop);
 
         j_stick_control_X.whenPressed(p_Intake_Out);
         j_stick_control_Y.whenPressed(p_Intake_In);
