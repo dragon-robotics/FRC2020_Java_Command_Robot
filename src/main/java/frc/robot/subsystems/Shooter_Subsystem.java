@@ -64,12 +64,12 @@ public class Shooter_Subsystem extends SubsystemBase {
   }
   public void Shoot_Joy(double shoot_speed) {
     shooter.set(shoot_speed); 
-    shooter_1.set(shoot_speed);
+    shooter_1.set(-shoot_speed);
 
   }
   public void Shoot_Button() {
     shooter.set(1);
-    shooter_1.set(1); 
+    shooter_1.set(-1); 
   }
 
   public void Shoot_Stop() {

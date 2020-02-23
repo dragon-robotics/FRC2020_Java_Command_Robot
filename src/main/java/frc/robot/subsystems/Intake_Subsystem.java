@@ -24,8 +24,8 @@ public class Intake_Subsystem extends SubsystemBase {
   private final TalonSRX indexer_bottom = new TalonSRX(Constants.TALONSRX_INDEXER_BOT);
   private final TalonSRX indexer_top = new TalonSRX(Constants.TALONSRX_INDEXER_TOP);
 
-  private final DoubleSolenoid piston_left = new DoubleSolenoid(Constants.DOUBLESOLENOID_INTAKE_LEFT, Constants.DOUBLESOLENOID_INTAKE_LEFT);
-  private final DoubleSolenoid piston_right = new DoubleSolenoid(Constants.DOUBLESOLENOID_INTAKE_RIGHT, Constants.DOUBLESOLENOID_INTAKE_RIGHT);
+  // private final DoubleSolenoid piston_left = new DoubleSolenoid(Constants.DOUBLESOLENOID_INTAKE_LEFT, Constants.DOUBLESOLENOID_INTAKE_LEFT);
+  // private final DoubleSolenoid piston_right = new DoubleSolenoid(Constants.DOUBLESOLENOID_INTAKE_RIGHT, Constants.DOUBLESOLENOID_INTAKE_RIGHT);
   
   public Intake_Subsystem() {
 
@@ -43,15 +43,15 @@ public class Intake_Subsystem extends SubsystemBase {
     intake.set(ControlMode.PercentOutput, 0);
   }
   
-  public void Intake_Deploy() {
-    piston_left.set(Value.kForward);
-    piston_right.set(Value.kForward);
-  }
+  // public void Intake_Deploy() {
+  //   piston_left.set(Value.kForward);
+  //   piston_right.set(Value.kForward);
+  // }
   
-  public void Intake_Retract() {
-    piston_left.set(Value.kReverse);
-    piston_right.set(Value.kReverse);
-  }
+  // public void Intake_Retract() {
+  //   piston_left.set(Value.kReverse);
+  //   piston_right.set(Value.kReverse);
+  // }
 
   public void Indexer_To_Shooter(){
     indexer_top.set(ControlMode.PercentOutput, 1);

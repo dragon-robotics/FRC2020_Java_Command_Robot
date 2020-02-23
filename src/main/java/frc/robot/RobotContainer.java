@@ -61,8 +61,8 @@ public class RobotContainer {
     private final Arcade_Drive m_arcadeDriveCommand = new Arcade_Drive(m_driveTrainSubsystem);
     
     // Compressor Commands //
-    private final Compressor_Start m_Compressor_Start = new Compressor_Start(m_compressorSubsystem);
-    private final Compressor_Stop m_Compressor_Stop = new Compressor_Stop(m_compressorSubsystem);
+    // private final Compressor_Start m_Compressor_Start = new Compressor_Start(m_compressorSubsystem);
+    // private final Compressor_Stop m_Compressor_Stop = new Compressor_Stop(m_compressorSubsystem);
     
     // Shooter Commands //
     private final Shoot_Joy m_Shoot_Joy = new Shoot_Joy(m_shooterSubsystem);
@@ -71,8 +71,8 @@ public class RobotContainer {
     private final Intake_PowerCell m_Intake_PowerCell = new Intake_PowerCell(m_intakeSubsystem);
     private final Outtake_PowerCell m_Outtake_PowerCell = new Outtake_PowerCell(m_intakeSubsystem);
     private final Intake_Stop m_Intake_Stop = new Intake_Stop(m_intakeSubsystem);
-    private final Intake_Deploy m_Intake_Deploy = new Intake_Deploy(m_intakeSubsystem);
-    private final Intake_Retract m_Intake_Retract = new Intake_Retract(m_intakeSubsystem);
+    // private final Intake_Deploy m_Intake_Deploy = new Intake_Deploy(m_intakeSubsystem);
+    // private final Intake_Retract m_Intake_Retract = new Intake_Retract(m_intakeSubsystem);
     private final Indexer_To_Intake m_Indexer_To_Intake = new Indexer_To_Intake(m_intakeSubsystem);
     private final Indexer_To_Shooter m_Indexer_To_Shooter = new Indexer_To_Shooter(m_intakeSubsystem);
     private final Indexer_Stop m_Indexer_Stop = new Indexer_Stop(m_intakeSubsystem);
@@ -132,7 +132,7 @@ public class RobotContainer {
         
         m_shooterSubsystem.setDefaultCommand(m_Shoot_Joy);
         
-        m_compressorSubsystem.setDefaultCommand(m_Compressor_Stop);
+        // m_compressorSubsystem.setDefaultCommand(m_C ompressor_Start);
         
         m_intakeSubsystem.setDefaultCommand(m_Intake_Stop);
 
@@ -152,8 +152,8 @@ public class RobotContainer {
         // j_stick_control_A.whenHeld(m_climbUpCommand);
         // j_stick_control_A.whenReleased(m_stopClimbCommand);
 
-        j_stick_control_leftStick.whenPressed(m_Compressor_Start);
-        j_stick_control_leftStick.whenReleased(m_Compressor_Stop);
+        // j_stick_control_leftStick.whenPressed(m_Compressor_Start);
+        // j_stick_control_leftStick.whenReleased(m_Compressor_Stop);
 
         j_stick_control_A.whenHeld(m_Intake_PowerCell);
         j_stick_control_A.whenReleased(m_Intake_Stop);
@@ -161,8 +161,8 @@ public class RobotContainer {
         j_stick_control_B.whenHeld(m_Outtake_PowerCell);
         j_stick_control_B.whenReleased(m_Intake_Stop);
 
-        j_stick_control_X.whenPressed(m_Intake_Deploy);
-        j_stick_control_Y.whenPressed(m_Intake_Retract);
+        // j_stick_control_X.whenPressed(m_Intake_Deploy);
+        // j_stick_control_Y.whenPressed(m_Intake_Retract);
 
         j_stick_control_LB.whenHeld(m_Indexer_To_Intake);
         j_stick_control_LB.whenReleased(m_Indexer_Stop);
