@@ -33,11 +33,11 @@ public class Shooter_Subsystem extends SubsystemBase {
   private SimpleWidget motor_velocity_2;
   private SimpleWidget motor_velocityConversionFactor_2;
 
-  private final CANSparkMax shooter = new CANSparkMax(Constants.SPARKMAX_SHOOT_1, MotorType.kBrushless);
-  private final CANSparkMax shooter_1 = new CANSparkMax(Constants.SPARKMAX_SHOOT_2, MotorType.kBrushless);
+  private final CANSparkMax shooterLeft = new CANSparkMax(Constants.SPARKMAX_SHOOTER_LEFT, MotorType.kBrushless);
+  private final CANSparkMax shooterRight = new CANSparkMax(Constants.SPARKMAX_SHOOTER_RIGHT, MotorType.kBrushless);
 
   private final CANEncoder shooterEncoder = new CANEncoder(shooter);
-  private final CANEncoder shooterEncoder_1 = new CANEncoder(shooter_1);
+  private final CANEncoder shooterEncoder_1 = new CANEncoder(shooterRight);
   public Shooter_Subsystem() {
     tabTitle = "shooterTab";
     shooterTab = Shuffleboard.getTab(tabTitle);
@@ -64,16 +64,16 @@ public class Shooter_Subsystem extends SubsystemBase {
   }
   public void Shoot_Joy(double shoot_speed) {
     shooter.set(shoot_speed); 
-    shooter_1.set(-shoot_speed);
+    shooterRight.set(-shoot_speed);
 
   }
   public void Shoot_Button() {
     shooter.set(1);
-    shooter_1.set(-1); 
+    shooterRight.set(-1); 
   }
 
   public void Shoot_Stop() {
     shooter.set(0);
-    shooter_1.set(0);
+    shooterRight.set(0);
   }
 }

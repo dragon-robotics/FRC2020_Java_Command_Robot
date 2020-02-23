@@ -14,14 +14,16 @@ import frc.robot.Constants;
 
 public class Climber_Subsystem extends SubsystemBase {
   
-    private final TalonSRX winch_1 = new TalonSRX(Constants.TALONSRX_WINCH);
-    private final TalonSRX winch_2 = new TalonSRX(Constants.TALONSRX_HOOK);
+    private final TalonSRX winchLeft = new TalonSRX(Constants.TALONSRX_WINCH_LEFT);
+    private final TalonSRX winchRight = new TalonSRX(Constants.TALONSRX_WINCH_RIGHT);
+
+    private final TalonSRX hook = new TalonSRX(Constants.TALONSRX_HOOK);
 
     /**
      * Creates a new Climber_Subsystem.
      */
     public Climber_Subsystem() {
-
+        // Set left winch to follow the right winch //
     }
 
     @Override
@@ -30,19 +32,19 @@ public class Climber_Subsystem extends SubsystemBase {
     }
 
     public void Move_Hook(double motor_speed) {
-        winch_2.set(ControlMode.PercentOutput, motor_speed);
+        winchRight.set(ControlMode.PercentOutput, motor_speed);
     }
     
     public void Climb_Up(){
-        winch_1.set(ControlMode.PercentOutput, 1.0);
+        winchLeft.set(ControlMode.PercentOutput, 1.0);
     }
 
     public void Climb_Down(){
-        winch_1.set(ControlMode.PercentOutput, -1.0);
+        winchLeft.set(ControlMode.PercentOutput, -1.0);
     }
 
     public void Stop_Climb(){
-        winch_1.set(ControlMode.PercentOutput, 0.0);
-       // winch_2.set(ControlMode.PercentOutput, 0.0);
+        winchLeft.set(ControlMode.PercentOutput, 0.0);
+       winchRight.set(ControlMode.PercentOutput, 0.0);
     }
 }
