@@ -9,6 +9,8 @@ package frc.robot;
 
 import javax.xml.namespace.QName;
 
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants.  This class should not be used for any other purpose.  All constants should be
@@ -44,66 +46,91 @@ public final class Constants {
 
   }
 
-    /* Left Motor */
-    public static final int MOTOR_LEFTFRONT = 3;
-    public static final int MOTOR_LEFTREAR = 4;
+  /* Left Motor */
+  public static final int MOTOR_LEFTFRONT = 3;
+  public static final int MOTOR_LEFTREAR = 4;
 
-    /* Right Motor */
-    public static final int MOTOR_RIGHTFRONT = 1;
-    public static final int MOTOR_RIGHTREAR = 2;
+  /* Right Motor */
+  public static final int MOTOR_RIGHTFRONT = 1;
+  public static final int MOTOR_RIGHTREAR = 2;
 
-    /* SparkMax */
-    public static final int SPARKMAX_SHOOT_1 = 1;
-    public static final int SPARKMAX_SHOOT_2 = 2;
+  /* SparkMax */
+  public static final int SPARKMAX_SHOOT_1 = 1;
+  public static final int SPARKMAX_SHOOT_2 = 2;
 
-    /* SparkMax */
-    public static final int SPARKMAX_SHOOTER_LEFT = 1;
-    public static final int SPARKMAX_SHOOTER_RIGHT = 2;
-    // public static final int SPARKMAX_ELEVATOR_1 = 3;
-    // public static final int SPARKMAX_ELEVATOR_2 = 4;
-    // public static final int SPARKMAX_ELEVATOR_3 = 5;
+  /* SparkMax */
+  public static final int SPARKMAX_SHOOTER_LEFT = 1;
+  public static final int SPARKMAX_SHOOTER_RIGHT = 2;
+  // public static final int SPARKMAX_ELEVATOR_1 = 3;
+  // public static final int SPARKMAX_ELEVATOR_2 = 4;
+  // public static final int SPARKMAX_ELEVATOR_3 = 5;
 
-    /* TalonSRX */
-    public static final int TALONSRX_WINCH = 1;
-    public static final int TALONSRX_HOOK = 2;
-    public static final int TALONSRX_INTAKE = 5;
-    public static final int TALONSRX_INDEXER_TOP = 8;
-    public static final int TALONSRX_INDEXER_BOT = 9;
-    public static final int TALONSRX_CLIMBER_LEFT = 6;
-    public static final int TALONSRX_CLIMBER_RIGHT = 7;
+  /* TalonSRX */
+  public static final int TALONSRX_WINCH = 1;
+  public static final int TALONSRX_HOOK = 2;
+  public static final int TALONSRX_INTAKE = 5;
+  public static final int TALONSRX_INDEXER_TOP = 8;
+  public static final int TALONSRX_INDEXER_BOT = 9;
+  public static final int TALONSRX_CLIMBER_LEFT = 6;
+  public static final int TALONSRX_CLIMBER_RIGHT = 7;
 
-    /* Double Solenoid */
-    public static final int DOUBLESOLENOID_INTAKE_LEFT = 0;
-    public static final int DOUBLESOLENOID_INTAKE_RIGHT = 1;
+  /* Double Solenoid */
+  public static final int DOUBLESOLENOID_INTAKE_LEFT = 0;
+  public static final int DOUBLESOLENOID_INTAKE_RIGHT = 1;
 
-    /* Joystick port */
-    public static final int  J_STICK_DRIVER = 0;
-    public static final int  J_STICK_CONTROL = 1;
+  /* Joystick port */
+  public static final int J_STICK_DRIVER = 0;
+  public static final int J_STICK_CONTROL = 1;
 
-    /* Joystick */
-    public static final int BUTTON_RIGHT = 5; 
-    public static final int BUTTON_LEFT = 6;
-    public static final int BUTTON_X = 3; 
-    public static final int BUTTON_Y = 4;
-    public static final int BUTTON_A = 1; 
-    public static final int BUTTON_B = 2;
-    public static final int BUTTON_BACK = 7;
-    public static final int BUTTON_START = 8;
-    public static final int BUTTON_LEFTSTICK = 9;
-    public static final int BUTTON_RIGHTSTICK = 10;
+  /* Joystick */
+  public static final int BUTTON_RIGHT = 5; 
+  public static final int BUTTON_LEFT = 6;
+  public static final int BUTTON_X = 3; 
+  public static final int BUTTON_Y = 4;
+  public static final int BUTTON_A = 1; 
+  public static final int BUTTON_B = 2;
+  public static final int BUTTON_BACK = 7;
+  public static final int BUTTON_START = 8;
+  public static final int BUTTON_LEFTSTICK = 9;
+  public static final int BUTTON_RIGHTSTICK = 10;
 
-    public static final int AXIS_LEFT_X = 0;
-    public static final int AXIS_LEFT_Y = 1;
-    public static final int AXIS_LEFT_TRIGGER = 2;
-    public static final int AXIS_RIGHT_TRIGGER = 3;
-    public static final int AXIS_RIGHT_X = 4;
-    public static final int AXIS_RIGHT_Y = 5;
+  public static final int AXIS_LEFT_X = 0;
+  public static final int AXIS_LEFT_Y = 1;
+  public static final int AXIS_LEFT_TRIGGER = 2;
+  public static final int AXIS_RIGHT_TRIGGER = 3;
+  public static final int AXIS_RIGHT_X = 4;
+  public static final int AXIS_RIGHT_Y = 5;
 
-    /* Pneumatics */
-    public static final int CAN_COMPRESSOR = 0;
-    public static final int CAN_DOUBLESOLENOID_1_LEFT = 0;
-    public static final int CAN_DOUBLESOLENOID_1_RIGHT = 1;
-    public static final int CAN_DOUBLESOLENOID_2_LEFT = 2;
-    public static final int CAN_DOUBLESOLENOID_2_RIGHT = 3;
+  /* Pneumatics */
+  public static final int CAN_COMPRESSOR = 0;
+  public static final int CAN_DOUBLESOLENOID_1_LEFT = 0;
+  public static final int CAN_DOUBLESOLENOID_1_RIGHT = 1;
+  public static final int CAN_DOUBLESOLENOID_2_LEFT = 2;
+  public static final int CAN_DOUBLESOLENOID_2_RIGHT = 3;
   
+  // These are example values only - DO NOT USE THESE FOR YOUR OWN ROBOT!
+  // These characterization values MUST be determined either experimentally or
+  // theoretically
+  // for *your* robot's drive.
+  // The Robot Characterization Toolsuite provides a convenient tool for obtaining
+  // these
+  // values for your robot.
+  public static final double KS_VOLT = 0.22;
+  public static final double KV_VOLT_SECONDS_PER_METER = 1.98;
+  public static final double KA_VOLT_SECONDS_SQ2_PER_METER = 0.2;
+
+  // Example value only - as above, this must be tuned for your drive!
+  public static final double KP_DRIVE_VEL = 8.5;
+
+  public static final double K_TRACK_WIDTH_METER = 0.5461;
+  public static final DifferentialDriveKinematics K_DRIVE_KINEMATICS = 
+    new DifferentialDriveKinematics(K_TRACK_WIDTH_METER);
+
+  public static final double K_MAX_SPEED_METERS_PER_SEC = 3;
+  public static final double K_MAX_ACCEL_METERS_PER_SEC_SQ2 = 3;
+
+  // Reasonable baseline values for a RAMSETE follower in units of meters and
+  // seconds
+  public static final double K_RAMSETE_B = 2;
+  public static final double K_RAMSETE_ZETA = 0.7;
 }

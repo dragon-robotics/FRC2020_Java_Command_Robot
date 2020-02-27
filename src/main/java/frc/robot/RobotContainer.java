@@ -7,8 +7,20 @@
 
 package frc.robot;
 
+import java.util.List;
+
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.controller.PIDController;
+import edu.wpi.first.wpilibj.controller.RamseteController;
+import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
+import edu.wpi.first.wpilibj.geometry.Pose2d;
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.geometry.Translation2d;
+import edu.wpi.first.wpilibj.trajectory.Trajectory;
+import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
+import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
+import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConstraint;
 import frc.robot.commands.Align_PID;
 import frc.robot.commands.Align_Profiled_PID;
 import frc.robot.commands.Arcade_Drive;
@@ -38,6 +50,7 @@ import frc.robot.subsystems.Limelight_Subsystem;
 import frc.robot.subsystems.NavXIMU_Subsystem;
 import frc.robot.subsystems.Shooter_Subsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -186,7 +199,58 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public Command getAutonomousCommand() {
-        // An ArcadeDriveCommand will run in autonomous
-        return m_autoCommand;
+        // Create a voltage constraint to ensure we don't accelerate too fast //
+        var autoVoltageConstraint = new DifferentialDriveVoltageConstraint(
+            new SimpleMotorFeedforward(
+                Constants.KS_VOLT, 
+                Constants.KV_VOLT_SECONDS_PER_METER,
+                Constants.KA_VOLT_SECONDS_SQ2_PER_METER
+            ),
+            Constants.K_DRIVE_KINEMATICS, 
+            10
+        );
+
+        // Create config for trajectory //
+        TrajectoryConfig config = new TrajectoryConfig(
+            Constants.K_MAX_SPEED_METERS_PER_SEC,
+            Constants.K_MAX_ACCEL_METERS_PER_SEC_SQ2
+        )
+        // Add kinematics to ensure max speed is actually obeyed
+        .setKinematics(Constants.K_DRIVE_KINEMATICS)
+        // Apply the voltage constraint
+        .addConstraint(autoVoltageConstraint);
+
+        // An example trajectory to follow. All units in meters. //
+        Trajectory exampleTrajectory = TrajectoryGenerator.generateTrajectory(
+            // Start at the origin facing the +X direction
+            new Pose2d(0, 0, new Rotation2d(0)),
+            // Pass through these two interior waypoints, making an 's' curve path
+            List.of(new Translation2d(1, 1), new Translation2d(2, -1)),
+            // End 3 meters straight ahead of where we started, facing forward
+            new Pose2d(3, 0, new Rotation2d(0)),
+            // Pass config
+            config
+        );
+
+        RamseteCommand ramseteCommand = new RamseteCommand(
+            exampleTrajectory, 
+            m_driveTrainSubsystem::getPose,
+            new RamseteController(Constants.K_RAMSETE_B, Constants.K_RAMSETE_ZETA),
+            new SimpleMotorFeedforward(
+                Constants.KS_VOLT, 
+                Constants.KV_VOLT_SECONDS_PER_METER,
+                Constants.KA_VOLT_SECONDS_SQ2_PER_METER
+            ),
+            Constants.K_DRIVE_KINEMATICS,
+            m_driveTrainSubsystem::getWheelSpeeds,
+            new PIDController(Constants.KP_DRIVE_VEL, 0, 0),
+            new PIDController(Constants.KP_DRIVE_VEL, 0, 0),
+            // RamseteCommand passes volts to the callback
+            m_driveTrainSubsystem::tankDriveVolts, 
+            m_driveTrainSubsystem
+        );
+
+        // Run path following command, then stop at the end.
+        return ramseteCommand.andThen(() -> m_driveTrainSubsystem.tankDriveVolts(0, 0));
     }
 }
