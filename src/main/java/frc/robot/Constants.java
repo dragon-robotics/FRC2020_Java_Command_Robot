@@ -38,6 +38,7 @@ public final class Constants {
     public static final double kS = 0;
     public static final double kA = 0;
     public static final double setPoint = 0;
+  }
   public final class Drivetrain {
 
   }
@@ -53,6 +54,9 @@ public final class Constants {
   /* SparkMax */
   public static final int SPARKMAX_SHOOT_1 = 1;
   public static final int SPARKMAX_SHOOT_2 = 2;
+  public static final int SPARKMAX_INDEXER_1 = 10;
+  public static final int SPARKMAX_INDEXER_2 = 11;
+  public static final int SPARKMAX_INDEXER_3 = 12;
 
   /* TalonSRX */
   public static final int TALONSRX_WINCH = 1;
@@ -67,8 +71,8 @@ public final class Constants {
   public static final int DOUBLESOLENOID_INTAKE_2 = 1;
 
   /* Joystick port */
-  public static final int  J_STICK_DRIVER = 0;
-  public static final int  J_STICK_CONTROL = 1;
+  public static final int J_STICK_DRIVER = 0;
+  public static final int J_STICK_CONTROL = 1;
 
   /* Joystick */
   public static final int BUTTON_RIGHT = 5; 

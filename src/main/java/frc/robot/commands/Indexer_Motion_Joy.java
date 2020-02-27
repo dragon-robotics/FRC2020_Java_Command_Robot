@@ -8,14 +8,22 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.RobotContainer;
+import frc.robot.subsystems.Indexer_Subsystem;
 
-public class Elevator_Motion_Joy extends CommandBase {
+public class Indexer_Motion_Joy extends CommandBase {
   /**
-   * Creates a new Elevator_Motion_Joy.
+   * Creates a new Indexer_Motion_Joy.
    */
-  public Elevator_Motion_Joy() {
+  private final Indexer_Subsystem m_subsystem;
+
+  public Indexer_Motion_Joy(Indexer_Subsystem subsystem) {
+    m_subsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(subsystem);
   }
+
+
 
   // Called when the command is initially scheduled.
   @Override
@@ -25,6 +33,7 @@ public class Elevator_Motion_Joy extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+
   }
 
   // Called once the command ends or is interrupted.

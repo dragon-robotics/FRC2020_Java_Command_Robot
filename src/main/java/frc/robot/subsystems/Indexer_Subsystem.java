@@ -14,31 +14,32 @@ import edu.wpi.first.wpilibj.CAN;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-  public class Elevator_Subsystem extends SubsystemBase {
+  public class Indexer_Subsystem extends SubsystemBase {
   /*
    * Creates a new Elevator_Subsystem.
    */
-  private CANSparkMax elevatorSparkMax_1 = new CANSparkMax(Constants.SPARKMAX_ELEVATOR_1, MotorType.kBrushless);
-  private CANSparkMax elevatorSparkMax_2 = new CANSparkMax(Constants.SPARKMAX_ELEVATOR_2, MotorType.kBrushless);
-  private CANSparkMax elevatorSparkMax_3 = new CANSparkMax(Constants.SPARKMAX_ELEVATOR_3, MotorType.kBrushless);
+  private CANSparkMax IndexerSparkMax_1 = new CANSparkMax(Constants.SPARKMAX_INDEXER_1, MotorType.kBrushless);
+  private CANSparkMax IndexerSparkMax_2 = new CANSparkMax(Constants.SPARKMAX_INDEXER_2, MotorType.kBrushless);
+  private CANSparkMax IndexerSparkMax_3 = new CANSparkMax(Constants.SPARKMAX_INDEXER_3, MotorType.kBrushless);
 
-  public Elevator_Subsystem() {
+  public Indexer_Subsystem() {
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
   } 
-  public void Elevator_Motion_Joy(double direction) {
-  elevatorSparkMax_1.set(direction);
-  elevatorSparkMax_2.set(direction);
-  elevatorSparkMax_3.set(direction);
-  
+  public void Indexer_Motion_Joy(double direction) {
+    IndexerSparkMax_1.set(direction);
+    IndexerSparkMax_2.set(direction);
+    IndexerSparkMax_3.set(direction);
+
   }
-  public void Stop_Elevator() {
-  elevatorSparkMax_1.set(0);
-  elevatorSparkMax_2.set(0);
-  elevatorSparkMax_3.set(0);
+
+  public void Stop_Indexer() {
+    IndexerSparkMax_1.set(0);
+    IndexerSparkMax_2.set(0);
+    IndexerSparkMax_3.set(0);
   }
 
   } 
