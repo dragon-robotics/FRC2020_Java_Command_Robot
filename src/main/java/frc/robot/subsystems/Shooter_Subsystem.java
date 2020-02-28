@@ -7,17 +7,18 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.revrobotics.CANEncoder;
+import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.SparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import frc.robot.RobotContainer;
 import frc.robot.Constants;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.CAN;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
@@ -29,57 +30,78 @@ public class Shooter_Subsystem extends SubsystemBase {
    */
   private String tabTitle;
   private ShuffleboardTab shooterTab;
-  private SimpleWidget motorPositionLeft;
-  private SimpleWidget motorVelocityLeft;
-  private SimpleWidget motorVelocityConversionFactorLeft;
-  private SimpleWidget motorPositionRight;
-  private SimpleWidget motorVelocityRight;
-  private SimpleWidget motorVelocityConversionFactorRight;
+  private NetworkTableEntry motor_position_1;
+  private NetworkTableEntry motor_velocity_1;
+  private NetworkTableEntry motor_velocityConversionFactor_1;
+  private NetworkTableEntry motor_position_2;
+  private NetworkTableEntry motor_velocity_2;
+  private NetworkTableEntry motor_velocityConversionFactor_2;
 
   private final CANSparkMax shooterLeft = new CANSparkMax(Constants.SPARKMAX_SHOOT_1, MotorType.kBrushless);
   private final CANSparkMax shooterRight = new CANSparkMax(Constants.SPARKMAX_SHOOT_2, MotorType.kBrushless);
 
-  private final CANEncoder shooterEncoderLeft = new CANEncoder(shooterLeft);
-  private final CANEncoder shooterEncoderRight = new CANEncoder(shooterRight);
+  private final CANEncoder shooterEncoder_Left = shooterLeft.getEncoder();
+  private final CANEncoder shooterEncoder_Right = shooterRight.getEncoder();
+
+  private final CANPIDController shooterPID_Left = shooterLeft.getPIDController();
+  private final CANPIDController shooterPID_Right = shooterRight.getPIDController();
+
   public Shooter_Subsystem() {
     tabTitle = "shooterTab";
     shooterTab = Shuffleboard.getTab(tabTitle);
+    shooterLeft.restoreFactoryDefaults();
+    shooterRight.restoreFactoryDefaults();
+    shooterLeft.set(0);
+    shooterRight.set(0);
+    shooterLeft.setIdleMode(IdleMode.kBrake);
+    shooterRight.setIdleMode(IdleMode.kBrake);
+    Reset_Encoders();
+    DisplayShooterData();
   }
-  public void DisplayNavXData() {
-    motorPositionLeft = shooterTab.add("position", shooterEncoderLeft.getPosition());
-    motorVelocityLeft = shooterTab.add("velocity", shooterEncoderLeft.getVelocity());
-    motorVelocityConversionFactorLeft = shooterTab.add("velocityConversionFactor", shooterEncoderLeft.getVelocityConversionFactor());
-  //  motorPositionRight = shooterTab.add("position", shooterEncoderRight.getPosition());
-  //  motorVelocityRight = shooterTab.add("velocity", shooterEncoderRight.getVelocity());
-   // motorVelocityConversionFactorRight = shooterTab.add("velocityConversionFactor", shooterEncoderRight.getVelocityConversionFactor());
+  public void DisplayShooterData() {
+    motor_position_1 = shooterTab.add("position_1", shooterEncoder_Left.getPosition()).getEntry();
+    motor_velocity_1 = shooterTab.add("velocity_1", shooterEncoder_Left.getVelocity()).getEntry();
+    motor_velocityConversionFactor_1 = shooterTab.add("velocityConversionFactor_1", shooterEncoder_Left.getVelocityConversionFactor()).getEntry();
+    motor_position_2 = shooterTab.add("position_2", shooterEncoder_Right.getPosition()).getEntry();
+    motor_velocity_2 = shooterTab.add("velocity_2", shooterEncoder_Right.getVelocity()).getEntry();
+    motor_velocityConversionFactor_2 = shooterTab.add("velocityConversionFactor_2", shooterEncoder_Right.getVelocityConversionFactor()).getEntry();
   
   
   }
- /* public void UpdateNavXData() {
-    motorPositionLeft = shooterEncoder.getPosition().getDouble();
-    motorVelocityLeft()
-    motorVelocityConversionFactorLeft.setDouble(shooterEncoder.getVelocityConversionFactor());
-  } */
+  public void UpdateShooterData() {
+    motor_position_1.setDouble(shooterEncoder_Left.getPosition());
+    motor_velocity_1.setDouble(shooterEncoder_Left.getVelocity());
+    motor_velocityConversionFactor_1.setDouble(shooterEncoder_Left.getVelocityConversionFactor());
+    motor_position_2.setDouble(shooterEncoder_Right.getPosition());
+    motor_velocity_2.setDouble(shooterEncoder_Right.getVelocity());
+    motor_velocityConversionFactor_2.setDouble(shooterEncoder_Right.getVelocityConversionFactor());
+  } 
+  public void Reset_Encoders() {
+    shooterEncoder_Left.setPosition(0);
+    shooterEncoder_Right.setPosition(0);
+  }
+  public void Set_PID() {
+    shooterPID_Left.setP(Constants.Shooter.kP);
+    shooterPID_Left.setI(Constants.Shooter.kI);
+    shooterPID_Left.setD(Constants.Shooter.kD);
+    shooterPID_Left.setSmartMotionMaxVelocity(Constants.Shooter.maxVel, Constants.Shooter.smartMotionSlot);
+  }
   @Override
   public void periodic() {
-    
+    UpdateShooterData();
     // This method will be called once per scheduler run
   }
-  public void Shooter_Shoot_Joy(double shoot_speed) {
+  public void Shoot_Joy(double shoot_speed) {
     shooterLeft.set(shoot_speed); 
-    shooterRight.set(shoot_speed);
+    shooterRight.set(-shoot_speed);
 
   }
-  public void Shooter_Shoot_Button() {
-    shooterLeft.set(1); 
-    shooterRight.set(1);
+  public void Shoot_Button() {
+    shooterLeft.set(1);
+   shooterRight.set(-1); 
   }
 
-  public void Shooty_McShoot_Face_PID() {
-
-  }
-
-  public void Stop_Shoot() {
+  public void Shoot_Stop() {
     shooterLeft.set(0);
     shooterRight.set(0);
   }

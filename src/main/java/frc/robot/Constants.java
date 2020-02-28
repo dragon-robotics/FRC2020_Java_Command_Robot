@@ -38,6 +38,10 @@ public final class Constants {
     public static final double kS = 0;
     public static final double kA = 0;
     public static final double setPoint = 0;
+    public static final double minVel = 2000;
+    public static final double maxVel = 4000;
+    public static final double maxAccel = 1500;
+    public static final int smartMotionSlot = 0;
   }
   public final class Drivetrain {
 

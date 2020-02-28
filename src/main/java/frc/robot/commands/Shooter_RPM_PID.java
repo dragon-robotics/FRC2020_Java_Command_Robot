@@ -26,7 +26,7 @@ public class Shooter_RPM_PID extends ProfiledPIDCommand {
             // The PID gains
             Constants.Shooter.kP, Constants.Shooter.kI, Constants.Shooter.kD,
             // The motion profile constraints
-            new TrapezoidProfile.Constraints(0, 0)),
+            new TrapezoidProfile.Constraints(Constants.Shooter.maxVel, Constants.Shooter.maxAccel)),
         // This should return the measurement
         () -> 0,
         // This should return the goal (can also be a constant)
