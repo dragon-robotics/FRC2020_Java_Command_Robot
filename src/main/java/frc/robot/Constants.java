@@ -41,7 +41,7 @@ public final class Constants {
     public static final double kMinOutput = -1;
     public static final double setPoint = 1;
     public static final double maxAccel = 1500;
-    public static final double maxVel = 4000;
+    public static final double maxVel = 5700;
   }
   public final class Drivetrain {
 

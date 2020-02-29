@@ -7,6 +7,8 @@
 
 package frc.robot.subsystems;
 
+import javax.sound.sampled.Control;
+
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.revrobotics.CANEncoder;
@@ -103,8 +105,9 @@ public class Shooter_Subsystem extends SubsystemBase {
     return shooterEncoder_Left.getVelocity();
   }
   public void Shoot_Joy(double shoot_speed) {
-    shooterLeft.set(0); 
-    shooterRight.set(0);
+    double shoot_speedy = shoot_speed * Constants.Shooter.maxVel;
+    shooterPID_Left.setReference(shoot_speedy, ControlType.kVelocity); 
+
   }
   public void Shoot_Button() {
     double setPoint = Constants.Shooter.setPoint * Constants.Shooter.maxVel;
