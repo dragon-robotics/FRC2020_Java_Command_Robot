@@ -32,16 +32,16 @@ public final class Constants {
   }
 
   public final class Shooter {
-    public static final double kP = 0.05;
-    public static final double kI = 0;
-    public static final double kD = 0;
-    public static final double kS = 0;
-    public static final double kA = 0;
-    public static final double setPoint = 0;
-    public static final double minVel = 2000;
-    public static final double maxVel = 4000;
+    public static final double kP = 0.00002;
+    public static final double kI = 0.0000;
+    public static final double kD = 0.000002;
+    public static final double kIz = 0;
+    public static final double kFF = 0.00017;
+    public static final double kMaxOutput = 1;
+    public static final double kMinOutput = -1;
+    public static final double setPoint = 1;
     public static final double maxAccel = 1500;
-    public static final int smartMotionSlot = 0;
+    public static final double maxVel = 4000;
   }
   public final class Drivetrain {
 

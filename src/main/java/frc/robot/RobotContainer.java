@@ -144,6 +144,9 @@ public class RobotContainer {
 
         j_stick_driver_B.whenHeld(n_Align_PID);
         j_stick_driver_B.whenReleased(n_Set_LED);
+
+        j_stick_control_LB.whenHeld(m_Shooter_Shoot_Button);
+        j_stick_control_LB.whenReleased(m_Shooter_Shoot_Joy);
     }
 
     /**

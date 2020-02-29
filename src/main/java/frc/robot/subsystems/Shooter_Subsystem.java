@@ -7,10 +7,12 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -57,6 +59,13 @@ public class Shooter_Subsystem extends SubsystemBase {
     shooterRight.setIdleMode(IdleMode.kBrake);
     Reset_Encoders();
     DisplayShooterData();
+    shooterPID_Left.setP(Constants.Shooter.kP);
+    shooterPID_Left.setI(Constants.Shooter.kI);
+    shooterPID_Left.setD(Constants.Shooter.kD);
+    shooterPID_Left.setIZone(Constants.Shooter.kIz);
+    shooterPID_Left.setFF(Constants.Shooter.kFF); //Feed Forward Value
+    shooterPID_Left.setOutputRange(Constants.Shooter.kMinOutput, Constants.Shooter.kMaxOutput);
+    shooterRight.follow(shooterLeft, true);
   }
   public void DisplayShooterData() {
     motor_position_1 = shooterTab.add("position_1", shooterEncoder_Left.getPosition()).getEntry();
@@ -65,9 +74,19 @@ public class Shooter_Subsystem extends SubsystemBase {
     motor_position_2 = shooterTab.add("position_2", shooterEncoder_Right.getPosition()).getEntry();
     motor_velocity_2 = shooterTab.add("velocity_2", shooterEncoder_Right.getVelocity()).getEntry();
     motor_velocityConversionFactor_2 = shooterTab.add("velocityConversionFactor_2", shooterEncoder_Right.getVelocityConversionFactor()).getEntry();
-  
-  
   }
+
+  // public void ChartShooterData(){
+  //   /**
+  //    * Chart the:
+  //    *  1. Velocity of the motor
+  //    *  2. Command Setpoint
+  //    *  3. Applied output
+  //    */
+
+  //    shooterTab.add()
+  // }
+
   public void UpdateShooterData() {
     motor_position_1.setDouble(shooterEncoder_Left.getPosition());
     motor_velocity_1.setDouble(shooterEncoder_Left.getVelocity());
@@ -80,29 +99,27 @@ public class Shooter_Subsystem extends SubsystemBase {
     shooterEncoder_Left.setPosition(0);
     shooterEncoder_Right.setPosition(0);
   }
-  public void Set_PID() {
-    shooterPID_Left.setP(Constants.Shooter.kP);
-    shooterPID_Left.setI(Constants.Shooter.kI);
-    shooterPID_Left.setD(Constants.Shooter.kD);
-    shooterPID_Left.setSmartMotionMaxVelocity(Constants.Shooter.maxVel, Constants.Shooter.smartMotionSlot);
-  }
-  @Override
-  public void periodic() {
-    UpdateShooterData();
-    // This method will be called once per scheduler run
+  public double Get_Motor_Left_Velocity() {
+    return shooterEncoder_Left.getVelocity();
   }
   public void Shoot_Joy(double shoot_speed) {
-    shooterLeft.set(shoot_speed); 
-    shooterRight.set(-shoot_speed);
-
+    shooterLeft.set(0); 
+    shooterRight.set(0);
   }
   public void Shoot_Button() {
-    shooterLeft.set(1);
-   shooterRight.set(-1); 
+    double setPoint = Constants.Shooter.setPoint * Constants.Shooter.maxVel;
+    shooterPID_Left.setReference(setPoint, ControlType.kVelocity);
   }
 
   public void Shoot_Stop() {
     shooterLeft.set(0);
     shooterRight.set(0);
   }
+  @Override
+  public void periodic() {
+    UpdateShooterData();
+    // This method will be called once per scheduler run
+  }
+
+  
 }
