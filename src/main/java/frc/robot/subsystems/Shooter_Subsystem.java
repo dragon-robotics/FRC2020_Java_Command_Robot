@@ -61,6 +61,7 @@ public class Shooter_Subsystem extends SubsystemBase {
     shooterRight.setIdleMode(IdleMode.kBrake);
     Reset_Encoders();
     DisplayShooterData();
+    shooterLeft.setClosedLoopRampRate(Constants.Shooter.rampRate);
     shooterPID_Left.setP(Constants.Shooter.kP);
     shooterPID_Left.setI(Constants.Shooter.kI);
     shooterPID_Left.setD(Constants.Shooter.kD);
@@ -88,7 +89,6 @@ public class Shooter_Subsystem extends SubsystemBase {
 
   //    shooterTab.add()
   // }
-
   public void UpdateShooterData() {
     motor_position_1.setDouble(shooterEncoder_Left.getPosition());
     motor_velocity_1.setDouble(shooterEncoder_Left.getVelocity());
@@ -104,11 +104,12 @@ public class Shooter_Subsystem extends SubsystemBase {
   public double Get_Motor_Left_Velocity() {
     return shooterEncoder_Left.getVelocity();
   }
-  public void Shoot_Joy(double shoot_speed) {
-    double shoot_speedy = shoot_speed * Constants.Shooter.maxVel;
-    shooterPID_Left.setReference(shoot_speedy, ControlType.kVelocity); 
+  /*
+  public void Shoot_Joy(double joystick) {
+    double shoot_speed = joystick * Constants.Shooter.maxVel;
+    shooterPID_Left.setReference(shoot_speed, ControlType.kVelocity); 
 
-  }
+  } */
   public void Shoot_Button() {
     double setPoint = Constants.Shooter.setPoint * Constants.Shooter.maxVel;
     shooterPID_Left.setReference(setPoint, ControlType.kVelocity);

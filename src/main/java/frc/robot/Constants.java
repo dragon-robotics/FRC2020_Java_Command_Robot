@@ -29,6 +29,10 @@ public final class Constants {
     public static final double setPercentTolerance = 0.01;
     public static final double setPositionTolerance = 0.015;
     public static final double setVelocityTolerance = 0.05;
+
+    public static final double targetHeight = 0;
+    public static final double limelightHeight = 0;
+    public static final double limelightAngle = 0;
   }
 
   public final class Shooter {
@@ -40,8 +44,9 @@ public final class Constants {
     public static final double kMaxOutput = 1;
     public static final double kMinOutput = -1;
     public static final double setPoint = 1;
-    public static final double maxAccel = 1500;
+    public static final double maxAccel = 10;
     public static final double maxVel = 5700;
+    public static final double rampRate = 2;
   }
   public final class Drivetrain {
 

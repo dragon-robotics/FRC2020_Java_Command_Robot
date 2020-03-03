@@ -33,8 +33,9 @@ public class Shoot_Joy extends CommandBase {
   @Override
   public void execute() {
     double rightJoyY = RobotContainer.j_stick_control.getRawAxis(Constants.AXIS_RIGHT_Y);
-
-    m_subsystem.Shoot_Joy(rightJoyY);
+    if (rightJoyY > 0.3 || rightJoyY < -0.3) {
+     // m_subsystem.Shoot_Joy(rightJoyY);
+    }
   }
 
   // Called once the command ends or is interrupted.
