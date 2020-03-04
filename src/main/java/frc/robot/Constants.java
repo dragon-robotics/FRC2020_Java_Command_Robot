@@ -59,12 +59,12 @@ public final class Constants {
   public static final int SPARKMAX_INDEXER_3 = 12;
 
   /* TalonSRX */
-  public static final int TALONSRX_WINCH = 1;
-  public static final int TALONSRX_HOOK = 2;
-  public static final int TALONSRX_SHOOT = 3;
-  public static final int TALONSRX_SHOOT_2 = 4;
-  public static final int TALONSRX_INTAKE = 5;
-  public static final int TALONSRX_INTAKE_2 = 6;
+  public static final int TALONSRX_WINCH_LEFT = 1;
+  public static final int TALONSRX_WINCH_RIGHT = 2;
+  public static final int TALONSRX_INTAKE = 3;
+  public static final int TALONSRX_INTAKE_2 = 4;
+  public static final int TALONSRX_HOOK_DEPLOYER_LEFT = 5;
+  public static final int TALONSRX_HOOK_DEPLOYER_RIGHT = 6;
 
   /* Double Solenoid */
   public static final int DOUBLESOLENOID_INTAKE_1 = 0;
@@ -101,3 +101,4 @@ public final class Constants {
   public static final int CAN_DOUBLESOLENOID_2_RIGHT = 3;
   
 }
+

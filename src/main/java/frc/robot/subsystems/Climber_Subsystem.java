@@ -14,8 +14,10 @@ import frc.robot.Constants;
 
 public class Climber_Subsystem extends SubsystemBase {
   
-    private final TalonSRX winch_1 = new TalonSRX(Constants.TALONSRX_WINCH);
-    private final TalonSRX winch_2 = new TalonSRX(Constants.TALONSRX_HOOK);
+    private final TalonSRX winch_left = new TalonSRX(Constants.TALONSRX_WINCH_LEFT);
+    private final TalonSRX winch_right = new TalonSRX(Constants.TALONSRX_WINCH_RIGHT);
+    private final TalonSRX hook_Deployer_left = new TalonSRX(Constants.TALONSRX_HOOK_DEPLOYER_LEFT);
+    private final TalonSRX hook_Deployer_right = new TalonSRX(Constants.TALONSRX_HOOK_DEPLOYER_RIGHT);
 
     /**
      * Creates a new Climber_Subsystem.
@@ -28,23 +30,30 @@ public class Climber_Subsystem extends SubsystemBase {
     public void periodic() {
         // This method will be called once per scheduler run
     }
-
     public void Move_Hook(double motor_speed) {
-        winch_2.set(ControlMode.PercentOutput, motor_speed);
+        hook_Deployer_left.set(ControlMode.PercentOutput, -motor_speed);
+        hook_Deployer_right.set(ControlMode.PercentOutput, motor_speed);
 
     }
-    
+    public void Move_Winch(double motor_speed) {
+        winch_left.set(ControlMode.PercentOutput, -motor_speed);
+        winch_right.set(ControlMode.PercentOutput, motor_speed);
+    }
+    public void Move_Climbers(double hook_motors, double winch_motors) {
+        Move_Hook(hook_motors);
+        Move_Winch(winch_motors);
+    }
     public void Climb_Up(){
-        winch_1.set(ControlMode.PercentOutput, 1.0);
+        winch_left.set(ControlMode.PercentOutput, 1.0);
 
     }
 
     public void Climb_Down(){
-        winch_1.set(ControlMode.PercentOutput, -1.0);
+        winch_left.set(ControlMode.PercentOutput, -1.0);
     }
 
     public void Stop_Climb(){
-        winch_1.set(ControlMode.PercentOutput, 0.0);
-       // winch_2.set(ControlMode.PercentOutput, 0.0);
+        winch_left.set(ControlMode.PercentOutput, 0.0);
+        winch_right.set(ControlMode.PercentOutput, 0.0);
     }
 }

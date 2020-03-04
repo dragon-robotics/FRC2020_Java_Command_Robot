@@ -49,7 +49,7 @@ public class Shooter_Subsystem extends SubsystemBase {
     motorPositionLeft = shooterTab.add("position", shooterEncoderLeft.getPosition());
     motorVelocityLeft = shooterTab.add("velocity", shooterEncoderLeft.getVelocity());
     motorVelocityConversionFactorLeft = shooterTab.add("velocityConversionFactor", shooterEncoderLeft.getVelocityConversionFactor());
-  //  motorPositionRight = shooterTab.add("position", shooterEncoderRight.getPosition());
+  //  motorPositionRight = shooterTab.add("position", shooterEncodeorRight.getPosition());
   //  motorVelocityRight = shooterTab.add("velocity", shooterEncoderRight.getVelocity());
    // motorVelocityConversionFactorRight = shooterTab.add("velocityConversionFactor", shooterEncoderRight.getVelocityConversionFactor());
   
